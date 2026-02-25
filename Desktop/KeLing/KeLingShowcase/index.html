@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>课灵 - 产品展示</title>
+  <link href="css/keling-theme.css" rel="stylesheet" />
+  <style>
+    html, body { height: 100%; overflow: hidden; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg-dark); color: #e0e8f0; }
+    .showcase { position: relative; width: 100%; height: 100%; }
+    .slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.5s, visibility 0.5s; overflow: visible; }
+    .slide.active { opacity: 1; visibility: visible; z-index: 1; }
+    .slide-inner { position: relative; width: 100%; max-width: 1200px; height: 100%; display: flex; align-items: center; justify-content: center; padding: 1rem 1.25rem; overflow: visible; }
+    .slide-content-center { flex-shrink: 0; display: flex; align-items: center; justify-content: center; min-width: 280px; }
+    .phone-wrap { width: 252px; height: 504px; border-radius: 28px; border: 3px solid var(--border); background: var(--card); box-shadow: 0 0 32px rgba(0,212,255,0.18), inset 0 0 48px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; position: relative; }
+    .phone-wrap::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 64px; height: 16px; border-radius: 8px; background: #0A0E17; }
+    .phone-screen { width: 92%; height: 94%; border-radius: 20px; background: linear-gradient(180deg, #1a2332 0%, #0d1219 100%); overflow: hidden; }
+    .phone-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+    .slide-title { position: absolute; top: 1.25rem; left: 50%; transform: translateX(-50%); font-size: 1.5rem; font-weight: 700; color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); white-space: nowrap; z-index: 2; }
+    .page-hint { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); font-size: 0.95rem; color: rgba(224,232,240,0.7); z-index: 2; }
+    .page-hint .shortcut { color: var(--neon-blue); font-size: 0.9em; }
+    .nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 2px solid var(--neon-blue); background: rgba(0,212,255,0.1); color: var(--neon-blue); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 100; transition: all 0.2s; }
+    .nav-btn:hover { background: rgba(0,212,255,0.3); box-shadow: 0 0 20px var(--neon-blue); }
+    .nav-prev { left: 1.5rem; }
+    .nav-next { right: 1.5rem; }
+    .dots { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 100; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s; }
+    .dot.active { background: var(--neon-blue); box-shadow: 0 0 12px var(--neon-blue); }
+    .dot:hover { background: rgba(0,212,255,0.6); }
+    /* ========== 气泡：相对整页定位，紧凑样式 ========== */
+    .bubble { position: absolute; max-width: 300px; padding: 1rem 1.2rem; border-radius: 18px; font-size: 1.05rem; line-height: 1.5; z-index: 10; animation: bubble-float 4s ease-in-out infinite; }
+    .bubble-left { left: 20px; top: 50%; transform: translateY(-50%); background: linear-gradient(135deg, #1e2838 0%, #121824 100%); border: 2px solid rgba(0,212,255,0.6); box-shadow: 0 0 40px rgba(0,212,255,0.25), inset 0 1px 0 rgba(255,255,255,0.1); }
+    .bubble-right { right: 20px; top: 50%; transform: translateY(-50%); background: linear-gradient(225deg, #1e2838 0%, #121824 100%); border: 2px solid rgba(191,0,255,0.6); box-shadow: 0 0 40px rgba(191,0,255,0.25), inset 0 1px 0 rgba(255,255,255,0.1); }
+    .bubble-left:nth-of-type(odd) { animation-delay: 0s; }
+    .bubble-left:nth-of-type(even) { animation-delay: -2s; top: 38%; }
+    .bubble-right:nth-of-type(odd) { animation-delay: -1s; }
+    .bubble-right:nth-of-type(even) { animation-delay: -3s; top: 62%; }
+    .bubble .bubble-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.35em; color: var(--neon-blue); text-shadow: 0 0 12px rgba(0,212,255,0.6); }
+    .bubble-right .bubble-title { color: var(--neon-purple); text-shadow: 0 0 12px rgba(191,0,255,0.6); }
+    .bubble p, .bubble ul { color: rgba(224,232,240,0.95); font-size: 1rem; }
+    .bubble ul { list-style: none; padding-left: 0; }
+    .bubble li { margin: 0.35em 0; padding-left: 1.1em; position: relative; font-size: 1rem; }
+    .bubble li::before { content: "▸"; position: absolute; left: 0; color: var(--neon-blue); }
+    .bubble-right li::before { color: var(--neon-purple); }
+    .bubble-right { animation-name: bubble-float-right; }
+    .starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,212,255,0.08) 0%, transparent 50%); }
+    .particle { position: absolute; width: 4px; height: 4px; background: var(--neon-blue); border-radius: 50%; opacity: 0.6; }
+    /* ========== 最后一页：感谢 + 架构图 + 结尾动效（可滚动，紧凑） ========== */
+    .slide-end { flex-direction: column; overflow-y: auto; overflow-x: hidden; align-items: center; justify-content: flex-start; padding: 0; }
+    .slide-end .slide-inner { flex-shrink: 0; width: 100%; padding: 0.75rem 1rem; }
+    .end-extra { width: 100%; max-width: 1000px; margin: 0 auto; padding: 1.25rem 1rem 2rem; flex-shrink: 0; }
+    .end-section-title { font-size: 1.2rem; font-weight: 700; color: var(--neon-blue); text-align: center; margin: 1.25rem 0 0.6rem; text-shadow: 0 0 14px rgba(0,212,255,0.5); }
+    .slide-end .logo-canvas-wrap { max-width: 860px; height: 280px; border-radius: 14px; }
+    .slide-end .logo-canvas-wrap canvas { border-radius: 14px; }
+    /* ========== 附：独立页嵌入（架构+功能图+动效） ========== */
+    .slide-embed { padding: 0; align-items: stretch; }
+    .slide-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+    .slide-embed .embed-hint { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-size: 0.9rem; color: rgba(224,232,240,0.6); z-index: 10; }
+    .slide-embed .embed-hint a { color: var(--neon-blue); text-decoration: none; }
+    .slide-embed .embed-hint a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="showcase">
+    <div class="starfield" id="starfield"></div>
+    <div class="slide slide-end" data-index="11">
+      <div class="slide-inner slide-end-inner">
+        <h2 class="slide-title">感谢 · 课灵团队</h2>
+        <div class="slide-content-center">
+          <div class="phone-wrap">
+            <div class="phone-screen">
+              <div class="phone-placeholder">Made with ❤️</div>
+            </div>
+          </div>
+        </div>
+        <p class="page-hint">12 / 13 · 向下滚动查看架构图与结尾动效</p>
+      </div>
+      <div class="bubble bubble-left">
+        <div class="bubble-title">项目主页</div>
+        <p>GitHub · 问题反馈与贡献欢迎通过 Issues 与 PR 参与。</p>
+      </div>
+      <div class="bubble bubble-right">
+        <div class="bubble-title">致谢</div>
+        <p>感谢所有使用与支持课灵的同学与老师。</p>
+      </div>
+      <div class="end-extra">
+        <h3 class="end-section-title">项目整体技术架构</h3>
+        <div class="arch-diagram">
+          <div class="arch-layer">
+            <div class="arch-layer-title">UI 层 · Presentation</div>
+            <div class="arch-box"><strong>Kotlin</strong> · Jetpack Compose</div>
+            <div class="arch-box"><strong>MVVM</strong> + Clean Architecture</div>
+            <div class="arch-box"><strong>Hilt</strong> · Navigation Compose</div>
+            <div class="arch-row">
+              <span class="arch-tag">Screens</span>
+              <span class="arch-tag">Theme</span>
+              <span class="arch-tag">Components</span>
+            </div>
+            <div class="arch-box">home · tasks · courses · achievements · ai · profile · login · splash</div>
+          </div>
+          <div class="arch-arrow"><span>→</span></div>
+          <div class="arch-layer">
+            <div class="arch-layer-title">Domain 层 · ViewModel</div>
+            <div class="arch-box"><strong>ViewModel</strong> · StateFlow</div>
+            <div class="arch-box"><strong>Repository</strong> 数据仓库</div>
+            <div class="arch-row">
+              <span class="arch-tag">TaskRepository</span>
+              <span class="arch-tag">CourseRepository</span>
+            </div>
+            <div class="arch-row">
+              <span class="arch-tag">AchievementRepository</span>
+              <span class="arch-tag">UserRepository</span>
+            </div>
+          </div>
+          <div class="arch-arrow"><span>→</span></div>
+          <div class="arch-layer">
+            <div class="arch-layer-title">Data 层</div>
+            <div class="arch-box"><strong>Room</strong> · DAO · KelingDatabase</div>
+            <div class="arch-box"><strong>Retrofit</strong> · OkHttp · ApiService</div>
+            <div class="arch-box"><strong>DataStore</strong> · Coil</div>
+            <div class="arch-row">
+              <span class="arch-tag">Model</span>
+              <span class="arch-tag">Preferences</span>
+            </div>
+            <div class="arch-box">Lottie · Vico · ML Kit · CameraX · BiometricPrompt</div>
+          </div>
+        </div>
+        <h3 class="end-section-title">应用功能结构图</h3>
+        <div class="func-diagram">
+          <div class="func-ai-core">
+            <div class="func-ai-title">AI 引擎 · 核心能力</div>
+            <div class="func-ai-sub">学情诊断 <span>·</span> 知识图谱 <span>·</span> 智能推荐 <span>·</span> 多模态交互</div>
+          </div>
+          <div class="func-modules">
+            <div class="func-module func-ai-powered"><span class="func-ai-badge">AI</span><div class="func-module-name">课程管理</div>教务同步 · 智能课表 · 教材数字化</div>
+            <div class="func-module func-ai-powered"><span class="func-ai-badge">AI</span><div class="func-module-name">任务系统</div>三维地图 · 动态难度 · 组队协作</div>
+            <div class="func-module"><div class="func-module-name">用户系统</div>多角色登录 · 数据看板</div>
+            <div class="func-module"><div class="func-module-name">游戏化引擎</div>成就徽章 · 经验值 · 排行榜</div>
+            <div class="func-module"><div class="func-module-name">无障碍系统</div>字体 · 对比度 · TTS · 手势</div>
+          </div>
+          <p class="func-caption"><strong>AI</strong> 驱动学情诊断与知识图谱，赋能课程与任务的智能化体验</p>
+        </div>
+        <h3 class="end-section-title">课灵 · 结尾动效</h3>
+        <div class="logo-canvas-wrap">
+          <canvas id="keling-logo-canvas" width="860" height="280"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-embed" data-index="12">
+      <iframe src="architecture-and-logo.html" title="架构与动效完整页"></iframe>
+      <p class="embed-hint">13 / 13 · 完整页：<a href="architecture-and-logo.html" target="_blank" rel="noopener">单独打开 architecture-and-logo.html</a></p>
+    </div>
+    <button type="button" class="nav-btn nav-prev" aria-label="上一页">‹</button>
+    <button type="button" class="nav-btn nav-next" aria-label="下一页">›</button>
+    <div class="dots" id="dots"></div>
+  </div>
+  <script src="js/showcase-slides.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var slides = document.querySelectorAll(".showcase > .slide");
+      var total = slides.length;
+      var current = 0;
+      function go(i) {
+        if (total === 0) return;
+        i = (i + total) % total;
+        if (slides[current]) slides[current].classList.remove("active");
+        current = i;
+        if (slides[current]) slides[current].classList.add("active");
+        var dot = document.querySelector(".dot.active");
+        if (dot) dot.classList.remove("active");
+        var dots = document.querySelectorAll(".dot");
+        if (dots[current]) dots[current].classList.add("active");
+      }
+      var dotsEl = document.getElementById("dots");
+      if (dotsEl) {
+        for (var i = 0; i < total; i++) {
+          var d = document.createElement("span");
+          d.className = "dot" + (i === 0 ? " active" : "");
+          d.setAttribute("data-index", i);
+          d.addEventListener("click", function () { go(parseInt(this.getAttribute("data-index"), 10)); });
+          dotsEl.appendChild(d);
+        }
+      }
+      var prevBtn = document.querySelector(".nav-prev");
+      var nextBtn = document.querySelector(".nav-next");
+      if (prevBtn) prevBtn.addEventListener("click", function () { go(current - 1); });
+      if (nextBtn) nextBtn.addEventListener("click", function () { go(current + 1); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") go(current - 1);
+        if (e.key === "ArrowRight") go(current + 1);
+        if (e.key === "End") go(total - 1);
+        if (e.key === "Home") go(0);
+      });
+      var sf = document.getElementById("starfield");
+      if (sf) {
+        for (var j = 0; j < 60; j++) {
+          var p = document.createElement("div");
+          p.className = "particle";
+          p.style.left = Math.random() * 100 + "%";
+          p.style.top = Math.random() * 100 + "%";
+          p.style.animation = "twinkle " + (2 + Math.random() * 3) + "s ease-in-out infinite";
+          sf.appendChild(p);
+        }
+      }
+      var style = document.createElement("style");
+      style.textContent = "@keyframes twinkle { 0%,100% { opacity: 0.3; } 50% { opacity: 0.9; } }";
+      document.head.appendChild(style);
+    });
+  </script>
+  <script src="js/logo-animation.js"></script>
+</body>
+</html>

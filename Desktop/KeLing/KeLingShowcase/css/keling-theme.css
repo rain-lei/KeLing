@@ -1,0 +1,232 @@
+/**
+ * 课灵展示页 - 共享主题样式
+ * 科幻霓虹风格，供 index.html 与 architecture-and-logo.html 共用
+ */
+:root {
+  --neon-blue: #00D4FF;
+  --neon-purple: #BF00FF;
+  --neon-pink: #FF0080;
+  --neon-green: #00FF88;
+  --neon-gold: #FFD700;
+  --bg-dark: #0A0E17;
+  --surface: #121824;
+  --card: #1E2838;
+  --border: #2A3648;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ========== 技术架构图 ========== */
+.arch-diagram {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto 1.5rem;
+}
+.arch-layer {
+  flex: 1;
+  min-width: 180px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.arch-layer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 9px;
+  border: 2px solid;
+}
+.arch-layer:nth-child(1) .arch-layer-title {
+  color: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 20px rgba(0,212,255,0.3);
+}
+.arch-layer:nth-child(2) .arch-layer-title {
+  color: var(--neon-purple);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 20px rgba(191,0,255,0.3);
+}
+.arch-layer:nth-child(3) .arch-layer-title {
+  color: var(--neon-green);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 20px rgba(0,255,136,0.3);
+}
+.arch-box {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  margin: 0.22rem 0;
+  border-radius: 9px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: rgba(224,232,240,0.9);
+  text-align: center;
+}
+.arch-box strong { color: var(--neon-blue); }
+.arch-layer:nth-child(2) .arch-box strong { color: var(--neon-purple); }
+.arch-layer:nth-child(3) .arch-box strong { color: var(--neon-green); }
+.arch-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  color: var(--neon-blue);
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+.arch-arrow span {
+  display: inline-block;
+  animation: arch-pulse 1.5s ease-in-out infinite;
+}
+@keyframes arch-pulse {
+  0%, 100% { opacity: 0.6; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+.arch-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+}
+.arch-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin: 0.15rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: rgba(0,212,255,0.12);
+  border: 1px solid rgba(0,212,255,0.4);
+  color: var(--neon-blue);
+}
+.arch-layer:nth-child(2) .arch-tag {
+  background: rgba(191,0,255,0.12);
+  border-color: rgba(191,0,255,0.4);
+  color: var(--neon-purple);
+}
+.arch-layer:nth-child(3) .arch-tag {
+  background: rgba(0,255,136,0.12);
+  border-color: rgba(0,255,136,0.4);
+  color: var(--neon-green);
+}
+
+/* ========== 应用功能结构图 ========== */
+.func-diagram {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+.func-ai-core {
+  text-align: center;
+  padding: 1.15rem 1.35rem;
+  margin: 0.9rem auto;
+  max-width: 400px;
+  border-radius: 14px;
+  border: 2px solid var(--neon-gold);
+  background: linear-gradient(180deg, rgba(255,215,0,0.14) 0%, rgba(255,215,0,0.05) 100%);
+  box-shadow: 0 0 36px rgba(255,215,0,0.32);
+  position: relative;
+  z-index: 2;
+}
+.func-ai-core .func-ai-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--neon-gold);
+  text-shadow: 0 0 18px rgba(255,215,0,0.75);
+  margin-bottom: 0.4rem;
+}
+.func-ai-core .func-ai-sub {
+  font-size: 0.88rem;
+  color: rgba(224,232,240,0.9);
+}
+.func-ai-core .func-ai-sub span { margin: 0 0.22rem; color: var(--neon-blue); }
+.func-modules {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.68rem;
+  margin-top: 0.88rem;
+}
+.func-module {
+  padding: 0.62rem 0.9rem;
+  border-radius: 11px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: rgba(224,232,240,0.9);
+  text-align: center;
+  max-width: 150px;
+  position: relative;
+}
+.func-module .func-module-name {
+  font-weight: 700;
+  color: var(--neon-blue);
+  margin-bottom: 0.22rem;
+}
+.func-module.func-ai-powered {
+  border-color: rgba(255,215,0,0.5);
+  box-shadow: 0 0 14px rgba(255,215,0,0.14);
+}
+.func-module.func-ai-powered .func-module-name { color: var(--neon-gold); }
+.func-module .func-ai-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 0.62rem;
+  padding: 0.13rem 0.32rem;
+  border-radius: 5px;
+  background: var(--neon-gold);
+  color: #0A0E17;
+  font-weight: 700;
+}
+.func-caption {
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba(224,232,240,0.7);
+  margin-top: 0.6rem;
+}
+.func-caption strong { color: var(--neon-gold); }
+
+/* ========== 课灵几何图形动效 ========== */
+.logo-canvas-wrap {
+  width: 100%;
+  max-width: 900px;
+  height: 320px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18,24,36,0.5);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+.logo-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+/* ========== 气泡动画 ========== */
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(-50%) translateX(0) scale(1); }
+  33% { transform: translateY(calc(-50% - 14px)) translateX(8px) scale(1.02); }
+  66% { transform: translateY(calc(-50% + 8px)) translateX(-4px) scale(0.98); }
+}
+@keyframes bubble-float-right {
+  0%, 100% { transform: translateY(-50%) translateX(0) scale(1); }
+  33% { transform: translateY(calc(-50% + 12px)) translateX(-8px) scale(1.02); }
+  66% { transform: translateY(calc(-50% - 6px)) translateX(4px) scale(0.98); }
+}
+
+@media (max-width: 900px) {
+  .arch-diagram { flex-wrap: wrap; justify-content: center; }
+  .arch-layer { min-width: 240px; max-width: 100%; }
+}

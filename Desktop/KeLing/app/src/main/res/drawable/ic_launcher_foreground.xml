@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- 背景渐变圆 -->
+    <path
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"
+        android:fillColor="#00D4FF"
+        android:fillAlpha="0.2"/>
+    
+    <!-- 外圈 -->
+    <path
+        android:pathData="M54,54m-35,0a35,35 0,1 1,70 0a35,35 0,1 1,-70 0"
+        android:strokeWidth="2"
+        android:strokeColor="#00D4FF"
+        android:fillColor="#00000000"/>
+    
+    <!-- 内圈 -->
+    <path
+        android:pathData="M54,54m-25,0a25,25 0,1 1,50 0a25,25 0,1 1,-50 0"
+        android:fillColor="#BF00FF"
+        android:fillAlpha="0.3"/>
+    
+    <!-- 课 字简化图形 -->
+    <path
+        android:pathData="M42,42 L66,42 M54,42 L54,66 M42,54 L66,54"
+        android:strokeWidth="4"
+        android:strokeColor="#00D4FF"
+        android:strokeLineCap="round"/>
+    
+    <!-- 装饰点 -->
+    <path
+        android:pathData="M38,38m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+        android:fillColor="#FF0080"/>
+    <path
+        android:pathData="M70,38m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+        android:fillColor="#BF00FF"/>
+    <path
+        android:pathData="M38,70m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+        android:fillColor="#00FF88"/>
+    <path
+        android:pathData="M70,70m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+        android:fillColor="#00D4FF"/>
+</vector>

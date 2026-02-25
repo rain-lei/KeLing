@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">课灵</string>
+    
+    <!-- 通用 -->
+    <string name="loading">加载中...</string>
+    <string name="error">出错了</string>
+    <string name="retry">重试</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="search">搜索</string>
+    <string name="back">返回</string>
+    
+    <!-- 登录 -->
+    <string name="login_title">欢迎回到课灵</string>
+    <string name="login_subtitle">开启你的学习之旅</string>
+    <string name="login_student">学生登录</string>
+    <string name="login_teacher">教师登录</string>
+    <string name="login_parent">家长登录</string>
+    <string name="login_username">学号/工号</string>
+    <string name="login_password">密码</string>
+    <string name="login_remember">记住我</string>
+    <string name="login_biometric">使用生物识别登录</string>
+    
+    <!-- 首页 -->
+    <string name="home_greeting">你好，%s</string>
+    <string name="home_today_tasks">今日任务</string>
+    <string name="home_quick_start">快速开始</string>
+    <string name="home_recent_courses">最近课程</string>
+    
+    <!-- 任务 -->
+    <string name="task_title">任务中心</string>
+    <string name="task_daily">日常任务</string>
+    <string name="task_weekly">周任务</string>
+    <string name="task_challenge">挑战任务</string>
+    <string name="task_team">组队任务</string>
+    <string name="task_complete">完成任务</string>
+    <string name="task_reward">+%d 经验值</string>
+    
+    <!-- 课程 -->
+    <string name="course_title">课程表</string>
+    <string name="course_today">今日课程</string>
+    <string name="course_week">本周课程</string>
+    <string name="course_materials">教材资源</string>
+    
+    <!-- 成就 -->
+    <string name="achievement_title">成就殿堂</string>
+    <string name="achievement_unlocked">解锁成就</string>
+    <string name="achievement_progress">成就进度</string>
+    
+    <!-- AI助手 -->
+    <string name="ai_title">课灵助手</string>
+    <string name="ai_hint">有什么我可以帮你的吗？</string>
+    <string name="ai_voice_hint">说"课灵，帮帮我"唤醒语音助手</string>
+    
+    <!-- 设置 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_account">账户设置</string>
+    <string name="settings_privacy">隐私设置</string>
+    <string name="settings_accessibility">无障碍</string>
+    <string name="settings_notification">通知设置</string>
+    <string name="settings_about">关于课灵</string>
+    <string name="settings_logout">退出登录</string>
+    
+    <!-- 无障碍 -->
+    <string name="accessibility_font_size">字体大小</string>
+    <string name="accessibility_contrast">高对比度模式</string>
+    <string name="accessibility_tts">语音朗读</string>
+    <string name="accessibility_gesture">手势控制</string>
+</resources>

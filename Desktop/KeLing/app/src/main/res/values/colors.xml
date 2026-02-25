@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 古风敦煌 · 主色 朱砂 -->
+    <color name="neon_blue">#B83D34</color>
+    <color name="neon_blue_dark">#9E3028</color>
+    <color name="neon_blue_light">#D45A4D</color>
+
+    <!-- 金 -->
+    <color name="neon_purple">#C9A227</color>
+    <color name="neon_purple_dark">#A8861F</color>
+    <color name="neon_purple_light">#E8C547</color>
+
+    <!-- 石青 -->
+    <color name="neon_pink">#2E5C8A</color>
+    <color name="neon_pink_dark">#1E3A5F</color>
+    <color name="neon_pink_light">#4A7BA8</color>
+
+    <!-- 石绿 -->
+    <color name="neon_green">#3D6B4F</color>
+    <color name="neon_green_dark">#2D5A45</color>
+    <color name="neon_green_light">#5A8F6A</color>
+
+    <!-- 赭石 -->
+    <color name="neon_orange">#B8860B</color>
+    <color name="neon_orange_dark">#8B6914</color>
+    <color name="neon_orange_light">#D4A82E</color>
+
+    <!-- 深朱 -->
+    <color name="neon_red">#9E3028</color>
+    <color name="neon_red_dark">#7A261F</color>
+    <color name="neon_red_light">#C43D34</color>
+
+    <!-- 金色 成就/奖励 -->
+    <color name="neon_gold">#D4AF37</color>
+    <color name="neon_gold_dark">#AA8B2C</color>
+    <color name="neon_gold_light">#E8C547</color>
+
+    <!-- 墨色/深绢 -->
+    <color name="dark_background">#1A1614</color>
+    <color name="dark_surface">#252019</color>
+    <color name="dark_surface_variant">#2D2825</color>
+    <color name="dark_card">#2D2825</color>
+    <color name="dark_border">#4A423C</color>
+
+    <!-- 文字 绢白/墨 -->
+    <color name="text_primary">#F0E9DC</color>
+    <color name="text_secondary">#B8A898</color>
+    <color name="text_tertiary">#8B8178</color>
+    <color name="text_disabled">#6B6259</color>
+
+    <color name="ic_launcher_background">#1A1614</color>
+</resources>

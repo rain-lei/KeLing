@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>课灵 - 技术架构与结尾动效</title>
+  <link href="css/keling-theme.css" rel="stylesheet" />
+  <style>
+    html, body { min-height: 100%; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg-dark); color: #e0e8f0; }
+    body { padding: 2rem 1rem 3rem; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,212,255,0.06) 0%, transparent 50%), var(--bg-dark); }
+    .page { max-width: 1100px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; font-weight: 700; color: var(--neon-blue); text-align: center; margin-bottom: 2rem; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+    .section-title { font-size: 1.4rem; font-weight: 700; color: var(--neon-blue); text-align: center; margin: 2.5rem 0 1rem; text-shadow: 0 0 16px rgba(0,212,255,0.5); }
+    .section-title:first-of-type { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>课灵 · 技术架构与结尾动效</h1>
+
+    <h2 class="section-title">项目整体技术架构</h2>
+    <div class="arch-diagram">
+      <div class="arch-layer">
+        <div class="arch-layer-title">UI 层 · Presentation</div>
+        <div class="arch-box"><strong>Kotlin</strong> · Jetpack Compose</div>
+        <div class="arch-box"><strong>MVVM</strong> + Clean Architecture</div>
+        <div class="arch-box"><strong>Hilt</strong> · Navigation Compose</div>
+        <div class="arch-row">
+          <span class="arch-tag">Screens</span>
+          <span class="arch-tag">Theme</span>
+          <span class="arch-tag">Components</span>
+        </div>
+        <div class="arch-box">home · tasks · courses · achievements · ai · profile · login · splash</div>
+      </div>
+      <div class="arch-arrow"><span>→</span></div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">Domain 层 · ViewModel</div>
+        <div class="arch-box"><strong>ViewModel</strong> · StateFlow</div>
+        <div class="arch-box"><strong>Repository</strong> 数据仓库</div>
+        <div class="arch-row">
+          <span class="arch-tag">TaskRepository</span>
+          <span class="arch-tag">CourseRepository</span>
+        </div>
+        <div class="arch-row">
+          <span class="arch-tag">AchievementRepository</span>
+          <span class="arch-tag">UserRepository</span>
+        </div>
+      </div>
+      <div class="arch-arrow"><span>→</span></div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">Data 层</div>
+        <div class="arch-box"><strong>Room</strong> · DAO · KelingDatabase</div>
+        <div class="arch-box"><strong>Retrofit</strong> · OkHttp · ApiService</div>
+        <div class="arch-box"><strong>DataStore</strong> · Coil</div>
+        <div class="arch-row">
+          <span class="arch-tag">Model</span>
+          <span class="arch-tag">Preferences</span>
+        </div>
+        <div class="arch-box">Lottie · Vico · ML Kit · CameraX · BiometricPrompt</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">应用功能结构图</h2>
+    <div class="func-diagram">
+      <div class="func-ai-core">
+        <div class="func-ai-title">AI 引擎 · 核心能力</div>
+        <div class="func-ai-sub">学情诊断 <span>·</span> 知识图谱 <span>·</span> 智能推荐 <span>·</span> 多模态交互</div>
+      </div>
+      <div class="func-modules">
+        <div class="func-module func-ai-powered"><span class="func-ai-badge">AI</span><div class="func-module-name">课程管理</div>教务同步 · 智能课表 · 教材数字化</div>
+        <div class="func-module func-ai-powered"><span class="func-ai-badge">AI</span><div class="func-module-name">任务系统</div>三维地图 · 动态难度 · 组队协作</div>
+        <div class="func-module"><div class="func-module-name">用户系统</div>多角色登录 · 数据看板</div>
+        <div class="func-module"><div class="func-module-name">游戏化引擎</div>成就徽章 · 经验值 · 排行榜</div>
+        <div class="func-module"><div class="func-module-name">无障碍系统</div>字体 · 对比度 · TTS · 手势</div>
+      </div>
+      <p class="func-caption"><strong>AI</strong> 驱动学情诊断与知识图谱，赋能课程与任务的智能化体验</p>
+    </div>
+
+    <h2 class="section-title">课灵 · 结尾动效</h2>
+    <div class="logo-canvas-wrap">
+      <canvas id="keling-logo-canvas" width="900" height="320"></canvas>
+    </div>
+  </div>
+
+  <script src="js/logo-animation.js"></script>
+</body>
+</html>
