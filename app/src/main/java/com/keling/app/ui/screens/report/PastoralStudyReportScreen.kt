@@ -146,7 +146,7 @@ private fun ReportHeader(onBack: () -> Unit) {
         Surface(
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
-            color = CreamWhite,
+            color = Color.Transparent,
             shadowElevation = 0.dp
         ) {
             Box(
@@ -156,7 +156,7 @@ private fun ReportHeader(onBack: () -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow_left),
                     contentDescription = "返回",
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(60.dp)
                 )
             }
         }

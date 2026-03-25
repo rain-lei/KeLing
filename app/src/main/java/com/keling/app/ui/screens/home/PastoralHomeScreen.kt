@@ -668,7 +668,7 @@ private fun EnhancedSpiritCard(
                 // 箭头按钮
                 Surface(
                     shape = RoundedCornerShape(14.dp),
-                    color = WarmSunOrange
+                    color = Color.Transparent
                 ) {
                     Box(
                         modifier = Modifier.padding(10.dp),
@@ -677,7 +677,7 @@ private fun EnhancedSpiritCard(
                         Image(
                             painter = painterResource(id = R.drawable.ic_arrow_right),
                             contentDescription = null,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(60.dp)
                         )
                     }
                 }
@@ -781,7 +781,7 @@ private fun EnhancedSectionTitle(
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_right),
                         contentDescription = null,
-                        modifier = Modifier.size(16.dp)
+                        modifier = Modifier.size(48.dp)
                     )
                 }
             }
@@ -1600,7 +1600,7 @@ private fun GlassmorphismSpiritCard(
 
                 Surface(
                     shape = RoundedCornerShape(14.dp),
-                    color = WarmSunOrange
+                    color = Color.Transparent
                 ) {
                     Box(
                         modifier = Modifier.padding(10.dp),
@@ -1609,7 +1609,7 @@ private fun GlassmorphismSpiritCard(
                         Image(
                             painter = painterResource(id = R.drawable.ic_arrow_right),
                             contentDescription = null,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(60.dp)
                         )
                     }
                 }
@@ -1688,7 +1688,7 @@ private fun GlassmorphismSectionTitle(
                     Image(
                         painter = painterResource(id = R.drawable.ic_arrow_right),
                         contentDescription = null,
-                        modifier = Modifier.size(16.dp)
+                        modifier = Modifier.size(48.dp)
                     )
                 }
             }

@@ -264,7 +264,7 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
         Surface(
             onClick = onBack,
             shape = RoundedCornerShape(14.dp),
-            color = WarmSunOrange.copy(alpha = 0.1f)
+            color = Color.Transparent
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -273,7 +273,7 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_arrow_left),
                     contentDescription = "返回",
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(60.dp)
                 )
             }
         }

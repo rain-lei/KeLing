@@ -344,14 +344,14 @@ private fun GameNPCHeader(
                 modifier = Modifier
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(CosmicSurface.copy(alpha = 0.5f))
+                    .background(Color.Transparent)
                     .clickable { onBack() },
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                 painter = painterResource(id = R.drawable.ic_arrow_left),
                 contentDescription = "返回",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(72.dp)
             )
             }
 
@@ -641,7 +641,7 @@ private fun QuestCard(
             Image(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
                 contentDescription = null,
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier.size(60.dp)
             )
         }
     }

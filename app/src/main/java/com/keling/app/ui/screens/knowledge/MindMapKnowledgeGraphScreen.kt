@@ -275,13 +275,18 @@ fun MindMapKnowledgeGraphScreen(
                 Surface(
                     onClick = onBack,
                     shape = RoundedCornerShape(12.dp),
-                    color = BeigeSurface
+                    color = Color.Transparent
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_arrow_left),
-                        contentDescription = "返回",
-                        modifier = Modifier.size(20.dp)
-                    )
+                    Box(
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_arrow_left),
+                            contentDescription = "返回",
+                            modifier = Modifier.size(60.dp)
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.width(16.dp))
