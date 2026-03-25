@@ -1389,23 +1389,12 @@ private fun GlassmorphismGreetingHeader(
         color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // 背景图片
-            Image(
-                painter = painterResource(id = R.drawable.bg_card_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
                 // 头像
                 Box(
                     modifier = Modifier.size(64.dp),
@@ -1476,7 +1465,6 @@ private fun GlassmorphismGreetingHeader(
                     GlassmorphismResourceBadge(icon = "⚡", value = user.energy, color = WarmSunOrange)
                     GlassmorphismResourceBadge(icon = "✿", value = user.crystals, color = LavenderPurple)
                 }
-            }
         }
     }
 }
@@ -1551,23 +1539,12 @@ private fun GlassmorphismSpiritCard(
         color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // 背景图片
-            Image(
-                painter = painterResource(id = R.drawable.bg_card_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
                 // 精灵图标
                 Box(
                     modifier = Modifier.size(72.dp),
@@ -1624,7 +1601,6 @@ private fun GlassmorphismSpiritCard(
                         )
                     }
                 }
-            }
         }
     }
 }
@@ -1649,14 +1625,14 @@ private fun GlassmorphismSectionTitle(
             if (icon != null) {
                 Surface(
                     shape = RoundedCornerShape(10.dp),
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = Color.Transparent
                 ) {
-                    Box(
-                        modifier = Modifier.padding(8.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = icon, fontSize = 18.sp)
-                    }
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_section_icon),
+                        contentDescription = null,
+                        modifier = Modifier.size(36.dp),
+                        contentScale = ContentScale.Fit
+                    )
                 }
                 Spacer(modifier = Modifier.width(10.dp))
             }
@@ -1684,7 +1660,7 @@ private fun GlassmorphismSectionTitle(
             Surface(
                 onClick = onAction,
                 shape = RoundedCornerShape(12.dp),
-                color = Color.White.copy(alpha = 0.8f)
+                color = Color.Transparent
             ) {
                 Row(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
@@ -1735,23 +1711,12 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
         color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(36.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // 背景图片
-            Image(
-                painter = painterResource(id = R.drawable.bg_card_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(36.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
             Surface(
                 shape = CircleShape,
                 color = MintGreen.copy(alpha = 0.2f),
@@ -1783,7 +1748,6 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
                 color = EarthBrown.copy(alpha = 0.5f)
             )
             }
-        }
     }
 }
 
@@ -1920,20 +1884,7 @@ private fun GlassmorphismQuickAccessSection(onNavigate: (String) -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(24.dp))
-        ) {
-            // 背景图片 - 拉伸适应容器大小
-            Image(
-                painter = painterResource(id = R.drawable.bg_quick_access_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            // 四个图标紧密排列成一列
+        // 四个图标紧密排列成一列
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1977,7 +1928,6 @@ private fun GlassmorphismQuickAccessSection(onNavigate: (String) -> Unit) {
                     onClick = { onNavigate("notes") }
                 )
             }
-        }
     }
 }
 
@@ -2071,23 +2021,12 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
         color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(28.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // 背景图片
-            Image(
-                painter = painterResource(id = R.drawable.bg_card_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(28.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
             Surface(
                 shape = CircleShape,
                 color = WarmSunOrange.copy(alpha = 0.15f),
@@ -2119,7 +2058,6 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
                 textAlign = TextAlign.Center
             )
             }
-        }
     }
 }
 
@@ -2180,21 +2118,10 @@ private fun GlassmorphismTaskCard(
         color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // 背景图片
-            Image(
-                painter = painterResource(id = R.drawable.bg_card_section),
-                contentDescription = null,
-                modifier = Modifier.matchParentSize(),
-                contentScale = ContentScale.FillBounds
-            )
-
-            Row(
-                modifier = Modifier.padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
             Surface(
                 shape = RoundedCornerShape(12.dp),
                 color = priorityColor.copy(alpha = 0.15f)
@@ -2273,7 +2200,6 @@ private fun GlassmorphismTaskCard(
                         )
                     }
                 }
-            }
             }
         }
     }
