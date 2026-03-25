@@ -62,7 +62,7 @@ fun PastoralStudyReportScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -212,6 +212,12 @@ private fun ReportOverviewCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -377,6 +383,12 @@ private fun AIInsightCard(insight: String) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Row(
             modifier = Modifier.padding(20.dp),
             verticalAlignment = Alignment.Top
@@ -426,6 +438,12 @@ private fun StudyDataSection(report: StudyReport?) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(modifier = Modifier.padding(20.dp)) {
             Text(
                 text = "学习数据详情",
@@ -499,6 +517,12 @@ private fun AnalysisSection(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(modifier = Modifier.padding(20.dp)) {
             Text(
                 text = title,

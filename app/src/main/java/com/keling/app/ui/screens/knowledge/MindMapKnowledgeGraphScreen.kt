@@ -245,7 +245,7 @@ fun MindMapKnowledgeGraphScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -259,6 +259,12 @@ fun MindMapKnowledgeGraphScreen(
             color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -468,6 +474,12 @@ fun MindMapKnowledgeGraphScreen(
             color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
                     text = "层级图例",
@@ -536,6 +548,12 @@ private fun MindMapNodeView(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)
         ) {

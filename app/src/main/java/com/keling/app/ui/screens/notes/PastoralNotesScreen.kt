@@ -87,7 +87,7 @@ fun PastoralNotesScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -229,6 +229,12 @@ private fun AINoteCard(onAskAI: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Row(
             modifier = Modifier.padding(20.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -321,6 +327,12 @@ private fun NoteCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier.padding(20.dp)
         ) {
@@ -419,6 +431,12 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()

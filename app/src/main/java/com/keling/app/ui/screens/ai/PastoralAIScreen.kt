@@ -303,7 +303,7 @@ fun PastoralAIScreen(
 @Composable
 private fun PastoralAIBackground() {
     Image(
-        painter = painterResource(id = R.drawable.bg_pastoral_theme),
+        painter = painterResource(id = R.drawable.bg_card_theme),
         contentDescription = null,
         modifier = Modifier.fillMaxSize(),
         contentScale = ContentScale.Crop
@@ -484,6 +484,12 @@ private fun PastoralConfirmCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "✿ 精灵为你设计了一个学习任务",
@@ -541,6 +547,12 @@ private fun PastoralKnowledgeCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "✿ 知识图谱已更新（${courseName}）",

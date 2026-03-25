@@ -86,7 +86,7 @@ fun PastoralProfileScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -251,6 +251,14 @@ private fun UserProfileCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -391,6 +399,14 @@ private fun StatisticsSection(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Column(modifier = Modifier.padding(20.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -556,6 +572,14 @@ private fun QuickActionCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Column(
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -602,6 +626,14 @@ private fun AchievementPreview(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_theme),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Column(modifier = Modifier.padding(20.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

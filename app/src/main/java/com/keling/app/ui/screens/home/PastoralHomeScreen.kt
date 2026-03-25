@@ -1389,6 +1389,13 @@ private fun GlassmorphismGreetingHeader(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1539,6 +1546,13 @@ private fun GlassmorphismSpiritCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1711,6 +1725,13 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1949,6 +1970,13 @@ private fun GlassmorphismQuickAccessCard(
         shape = RoundedCornerShape(20.dp),
         color = CreamWhite.copy(alpha = 0.8f)
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2021,6 +2049,13 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2118,6 +2153,13 @@ private fun GlassmorphismTaskCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
