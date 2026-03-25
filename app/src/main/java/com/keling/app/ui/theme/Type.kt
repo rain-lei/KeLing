@@ -1,7 +1,6 @@
 /**
  * Type.kt
- * 字体排版系统 - 游戏化设计风格
- * 使用思源宋体(Noto Serif SC)作为主字体
+ * 字体排版系统 - 黑体加粗风格
  */
 
 package com.keling.app.ui.theme
@@ -29,30 +28,20 @@ private fun titleShadow() = Shadow(
 
 /**
  * 应用字体家族
- * 使用内嵌的思源宋体，不跟随系统字体
+ * 使用系统黑体（无衬线字体）
  */
-private val KelingFontFamily = FontFamily(
-    Font(R.font.noto_serif_sc, FontWeight.Normal),
-    Font(R.font.noto_serif_sc, FontWeight.Medium),
-    Font(R.font.noto_serif_sc, FontWeight.Bold)
-)
-
-/**
- * 备用字体（系统默认无衬线字体）
- * 用于需要清晰易读的场景
- */
-private val SystemFontFamily = FontFamily.Default
+private val HeiTiFontFamily = FontFamily.Default
 
 /**
  * 应用字体排版系统
- * 更粗、更具设计感的游戏化风格
+ * 黑体加粗风格
  */
 val Typography = Typography(
     // ==================== 展示级标题 ====================
     /** 超大标题 - 用于启动页、重要页面主标题 */
     displayLarge = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 44.sp,
         lineHeight = 52.sp,
         letterSpacing = (-0.5).sp,
@@ -61,8 +50,8 @@ val Typography = Typography(
 
     /** 大型展示标题 - 用于特殊强调 */
     displayMedium = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
         lineHeight = 44.sp,
         letterSpacing = (-0.3).sp,
@@ -72,7 +61,7 @@ val Typography = Typography(
     // ==================== 标题级 ====================
     /** 大标题 - 用于页面主标题 */
     headlineLarge = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp,
         lineHeight = 36.sp,
@@ -81,7 +70,7 @@ val Typography = Typography(
 
     /** 中标题 - 用于区块标题、卡片标题 */
     headlineMedium = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
         lineHeight = 30.sp,
@@ -90,7 +79,7 @@ val Typography = Typography(
 
     /** 小标题 - 用于列表项标题 */
     headlineSmall = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
         lineHeight = 26.sp,
@@ -100,7 +89,7 @@ val Typography = Typography(
     // ==================== 副标题级 ====================
     /** 大副标题 - 用于重要副标题 */
     titleLarge = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 17.sp,
         lineHeight = 24.sp,
@@ -109,7 +98,7 @@ val Typography = Typography(
 
     /** 中副标题 - 默认副标题 */
     titleMedium = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 15.sp,
         lineHeight = 21.sp,
@@ -118,8 +107,8 @@ val Typography = Typography(
 
     /** 小副标题 */
     titleSmall = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 13.sp,
         lineHeight = 19.sp,
         letterSpacing = 0.1.sp
@@ -128,8 +117,8 @@ val Typography = Typography(
     // ==================== 正文级 ====================
     /** 大正文 - 主要内容 */
     bodyLarge = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 15.sp,
         lineHeight = 22.sp,
         letterSpacing = 0.2.sp
@@ -137,8 +126,8 @@ val Typography = Typography(
 
     /** 中正文 - 默认正文 */
     bodyMedium = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.15.sp
@@ -146,8 +135,8 @@ val Typography = Typography(
 
     /** 小正文 - 辅助文字 */
     bodySmall = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Normal,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         lineHeight = 17.sp,
         letterSpacing = 0.2.sp
@@ -156,7 +145,7 @@ val Typography = Typography(
     // ==================== 标签级 ====================
     /** 大标签 */
     labelLarge = TextStyle(
-        fontFamily = SystemFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 13.sp,
         lineHeight = 18.sp,
@@ -165,7 +154,7 @@ val Typography = Typography(
 
     /** 中标签 - 默认标签 */
     labelMedium = TextStyle(
-        fontFamily = SystemFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         lineHeight = 16.sp,
@@ -174,8 +163,8 @@ val Typography = Typography(
 
     /** 小标签 */
     labelSmall = TextStyle(
-        fontFamily = SystemFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 10.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.4.sp
@@ -188,16 +177,16 @@ val Typography = Typography(
 object SpecialTextStyle {
     /** 数字显示 - 用于计时器、统计数字 */
     val number = TextStyle(
-        fontFamily = SystemFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 44.sp,
         letterSpacing = (-1).sp
     )
 
     /** 引用文字 */
     val quote = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 15.sp,
         lineHeight = 22.sp,
         letterSpacing = 0.2.sp
@@ -206,7 +195,7 @@ object SpecialTextStyle {
     /** 代码文字 */
     val code = TextStyle(
         fontFamily = FontFamily.Monospace,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 13.sp,
         lineHeight = 18.sp,
         letterSpacing = 0.sp
@@ -215,13 +204,13 @@ object SpecialTextStyle {
 
 /**
  * 游戏化文字样式
- * 更加活泼、有特色的字体效果
+ * 黑体加粗风格
  */
 object GameTextStyle {
     /** 游戏大标题 - 带阴影效果 */
     val gameTitle = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 26.sp,
         lineHeight = 34.sp,
         letterSpacing = (-0.3).sp,
@@ -234,7 +223,7 @@ object GameTextStyle {
 
     /** 游戏副标题 */
     val gameSubtitle = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 15.sp,
         lineHeight = 21.sp,
@@ -243,7 +232,7 @@ object GameTextStyle {
 
     /** 游戏卡片标题 */
     val cardTitle = TextStyle(
-        fontFamily = KelingFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         lineHeight = 22.sp,
@@ -252,7 +241,7 @@ object GameTextStyle {
 
     /** 游戏按钮文字 */
     val buttonText = TextStyle(
-        fontFamily = SystemFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         lineHeight = 19.sp,
@@ -261,7 +250,7 @@ object GameTextStyle {
 
     /** 游戏标签文字 */
     val tagText = TextStyle(
-        fontFamily = SystemFontFamily,
+        fontFamily = HeiTiFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 11.sp,
         lineHeight = 14.sp,
@@ -270,24 +259,24 @@ object GameTextStyle {
 
     /** 游戏奖励数字 */
     val rewardNumber = TextStyle(
-        fontFamily = SystemFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 17.sp,
         letterSpacing = (-0.5).sp
     )
 
     /** 游戏统计数字 */
     val statNumber = TextStyle(
-        fontFamily = SystemFontFamily,
-        fontWeight = FontWeight.Black,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         letterSpacing = (-0.5).sp
     )
 
     /** 游戏提示文字 */
     val hint = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 13.sp,
         lineHeight = 18.sp,
         letterSpacing = 0.2.sp
@@ -295,8 +284,8 @@ object GameTextStyle {
 
     /** 游戏描述文字 */
     val description = TextStyle(
-        fontFamily = KelingFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontFamily = HeiTiFontFamily,
+        fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.15.sp
