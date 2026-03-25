@@ -210,7 +210,7 @@ private fun AchievementProgressCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -423,7 +423,7 @@ private fun AchievementCard(achievement: Achievement) {
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(

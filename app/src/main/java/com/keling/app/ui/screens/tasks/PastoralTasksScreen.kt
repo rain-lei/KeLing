@@ -347,7 +347,7 @@ private fun EnhancedTaskOverview(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Box(
@@ -875,7 +875,7 @@ private fun EnhancedEmptyState(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(

@@ -232,7 +232,7 @@ private fun SettingsSection(
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            color = Color.Transparent,
+            color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
             Column(content = content)

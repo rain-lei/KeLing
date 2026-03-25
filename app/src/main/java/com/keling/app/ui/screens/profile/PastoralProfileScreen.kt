@@ -248,7 +248,7 @@ private fun UserProfileCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -388,7 +388,7 @@ private fun StatisticsSection(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -553,7 +553,7 @@ private fun QuickActionCard(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(16.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -599,7 +599,7 @@ private fun AchievementPreview(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {

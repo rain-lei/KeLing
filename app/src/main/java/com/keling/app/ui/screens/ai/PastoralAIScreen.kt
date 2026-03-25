@@ -481,7 +481,7 @@ private fun PastoralConfirmCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -538,7 +538,7 @@ private fun PastoralKnowledgeCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

@@ -226,7 +226,7 @@ private fun AINoteCard(onAskAI: () -> Unit) {
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -318,7 +318,7 @@ private fun NoteCard(
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -416,7 +416,7 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(

@@ -209,7 +209,7 @@ private fun ReportOverviewCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -374,7 +374,7 @@ private fun AIInsightCard(insight: String) {
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -423,7 +423,7 @@ private fun StudyDataSection(report: StudyReport?) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -496,7 +496,7 @@ private fun AnalysisSection(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {

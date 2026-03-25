@@ -1386,7 +1386,7 @@ private fun GlassmorphismGreetingHeader(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(28.dp)),
         shape = RoundedCornerShape(28.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -1536,7 +1536,7 @@ private fun GlassmorphismSpiritCard(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -1708,7 +1708,7 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -1947,7 +1947,7 @@ private fun GlassmorphismQuickAccessCard(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(20.dp),
-        color = Color.Transparent
+        color = CreamWhite.copy(alpha = 0.8f)
     ) {
         Column(
             modifier = Modifier
@@ -2018,7 +2018,7 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(22.dp)),
         shape = RoundedCornerShape(22.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -2115,7 +2115,7 @@ private fun GlassmorphismTaskCard(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(18.dp)),
         shape = RoundedCornerShape(18.dp),
-        color = Color.Transparent,
+        color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
