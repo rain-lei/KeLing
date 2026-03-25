@@ -668,16 +668,17 @@ private fun EnhancedSpiritCard(
                 // 箭头按钮
                 Surface(
                     shape = RoundedCornerShape(14.dp),
-                    color = Color.Transparent
+                    color = WarmSunOrange
                 ) {
                     Box(
                         modifier = Modifier.padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_arrow_right),
-                            contentDescription = null,
-                            modifier = Modifier.size(60.dp)
+                        Text(
+                            text = "→",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
                         )
                     }
                 }
@@ -778,10 +779,10 @@ private fun EnhancedSectionTitle(
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_arrow_right),
-                        contentDescription = null,
-                        modifier = Modifier.size(48.dp)
+                    Text(
+                        text = "→",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = WarmSunOrange
                     )
                 }
             }
@@ -1385,16 +1386,9 @@ private fun GlassmorphismGreetingHeader(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(28.dp)),
         shape = RoundedCornerShape(28.dp),
-        color = CreamWhite.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1415,7 +1409,7 @@ private fun GlassmorphismGreetingHeader(
                             painter = painterResource(id = R.drawable.ic_user_avatar),
                             contentDescription = "用户头像",
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.FillBounds
+                            contentScale = ContentScale.Crop
                         )
                     }
                 }
@@ -1542,16 +1536,9 @@ private fun GlassmorphismSpiritCard(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1572,7 +1559,7 @@ private fun GlassmorphismSpiritCard(
                             painter = painterResource(id = R.drawable.ic_planet_sprite),
                             contentDescription = "星球精灵",
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.FillBounds
+                            contentScale = ContentScale.Crop
                         )
                     }
                 }
@@ -1600,16 +1587,17 @@ private fun GlassmorphismSpiritCard(
 
                 Surface(
                     shape = RoundedCornerShape(14.dp),
-                    color = Color.Transparent
+                    color = WarmSunOrange
                 ) {
                     Box(
                         modifier = Modifier.padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_arrow_right),
-                            contentDescription = null,
-                            modifier = Modifier.size(60.dp)
+                        Text(
+                            text = "→",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
                         )
                     }
                 }
@@ -1685,10 +1673,10 @@ private fun GlassmorphismSectionTitle(
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_arrow_right),
-                        contentDescription = null,
-                        modifier = Modifier.size(48.dp)
+                    Text(
+                        text = "→",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = WarmSunOrange
                     )
                 }
             }
@@ -1720,16 +1708,9 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1966,15 +1947,8 @@ private fun GlassmorphismQuickAccessCard(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite.copy(alpha = 0.8f)
+        color = Color.Transparent
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1996,7 +1970,7 @@ private fun GlassmorphismQuickAccessCard(
                     painter = painterResource(id = iconRes),
                     contentDescription = title,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.FillBounds
+                    contentScale = ContentScale.Crop
                 )
             }
 
@@ -2044,16 +2018,9 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(22.dp)),
         shape = RoundedCornerShape(22.dp),
-        color = CreamWhite.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2148,16 +2115,9 @@ private fun GlassmorphismTaskCard(
             .graphicsLayer { translationY = floatOffset }
             .clip(RoundedCornerShape(18.dp)),
         shape = RoundedCornerShape(18.dp),
-        color = CreamWhite.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_module),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
