@@ -13,6 +13,7 @@ package com.keling.app.ui.screens.achievements
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,17 +34,19 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.keling.app.R
 import com.keling.app.data.Achievement
 import com.keling.app.data.AchievementCategory
 import com.keling.app.data.PREDEFINED_ACHIEVEMENTS
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
-import kotlin.random.Random
 
 @Composable
 fun PastoralAchievementsScreen(
@@ -66,12 +69,15 @@ fun PastoralAchievementsScreen(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(PastoralGradients.morningGarden))
+        modifier = Modifier.fillMaxSize()
     ) {
-        // 背景装饰
-        AchievementsBackgroundDecorations()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         LazyColumn(
             modifier = Modifier
@@ -204,7 +210,7 @@ private fun AchievementProgressCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 4.dp
     ) {
         Column(
@@ -361,7 +367,7 @@ private fun CategoryChip(
     Surface(
         onClick = onClick,
         shape = RoundedCornerShape(16.dp),
-        color = if (isSelected) WarmSunOrange.copy(alpha = 0.15f) else CreamWhite,
+        color = if (isSelected) WarmSunOrange.copy(alpha = 0.15f) else Color.Transparent,
         border = if (isSelected) {
             androidx.compose.foundation.BorderStroke(2.dp, WarmSunOrange)
         } else null,
@@ -417,7 +423,7 @@ private fun AchievementCard(achievement: Achievement) {
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = if (achievement.isUnlocked) CreamWhite else CreamWhite.copy(alpha = 0.7f),
+        color = Color.Transparent,
         shadowElevation = if (achievement.isUnlocked) 3.dp else 0.dp
     ) {
         Row(
@@ -569,50 +575,4 @@ private fun getCategoryIcon(category: AchievementCategory): String {
         AchievementCategory.SOCIAL -> "🤝"
         AchievementCategory.MASTERY -> "✨"
     }
-}
-
-// ==================== 背景装饰 ====================
-
-@Composable
-private fun AchievementsBackgroundDecorations() {
-    val decorations = remember { List(8) { DecorationParticle() } }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        decorations.forEach { particle ->
-            FloatingDecoration(particle = particle)
-        }
-    }
-}
-
-private class DecorationParticle {
-    val x = Random.nextFloat()
-    val y = Random.nextFloat()
-    val size = Random.nextInt(4, 10)
-    val alpha = Random.nextFloat() * 0.08f + 0.03f
-    val speed = Random.nextInt(4000, 8000)
-}
-
-@Composable
-private fun FloatingDecoration(particle: DecorationParticle) {
-    val alpha by rememberInfiniteTransition(label = "deco").animateFloat(
-        initialValue = particle.alpha * 0.5f,
-        targetValue = particle.alpha,
-        animationSpec = infiniteRepeatable(
-            animation = tween(particle.speed, easing = EaseInOutSine),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "alpha"
-    )
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .drawBehind {
-                drawCircle(
-                    color = CreamYellow.copy(alpha = alpha),
-                    radius = particle.size.dp.toPx(),
-                    center = Offset(particle.x * size.width, particle.y * size.height)
-                )
-            }
-    )
 }

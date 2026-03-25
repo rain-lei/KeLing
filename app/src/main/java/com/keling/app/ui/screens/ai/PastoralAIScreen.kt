@@ -302,72 +302,11 @@ fun PastoralAIScreen(
  */
 @Composable
 private fun PastoralAIBackground() {
-    val particles = remember { List(8) { FloatingPetal() } }
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = PastoralGradients.morningGarden
-                )
-            )
-    ) {
-        // 漂浮花瓣
-        particles.forEach { particle ->
-            FloatingPetalAnimation(particle = particle)
-        }
-    }
-}
-
-private class FloatingPetal {
-    val x = Random.nextFloat()
-    val startY = -0.1f
-    val endY = 1.1f
-    val size = Random.nextInt(8, 16)
-    val speed = Random.nextInt(15000, 25000)
-    val alpha = Random.nextFloat() * 0.15f + 0.05f
-    val color = listOf(WarmSunOrange, PeachPink, CreamYellow, LavenderPurple).random()
-}
-
-@Composable
-private fun FloatingPetalAnimation(particle: FloatingPetal) {
-    val infiniteTransition = rememberInfiniteTransition(label = "petal")
-
-    val progress by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(particle.speed, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "progress"
-    )
-
-    val swayOffset by infiniteTransition.animateFloat(
-        initialValue = -30f,
-        targetValue = 30f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(3000, easing = EaseInOutSine),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "sway"
-    )
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .drawBehind {
-                val y = particle.startY + (particle.endY - particle.startY) * progress
-                drawCircle(
-                    color = particle.color.copy(alpha = particle.alpha),
-                    radius = particle.size.dp.toPx(),
-                    center = Offset(
-                        x = particle.x * size.width + swayOffset,
-                        y = y * size.height
-                    )
-                )
-            }
+    Image(
+        painter = painterResource(id = R.drawable.bg_pastoral_theme),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop
     )
 }
 
@@ -542,7 +481,7 @@ private fun PastoralConfirmCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -599,7 +538,7 @@ private fun PastoralKnowledgeCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

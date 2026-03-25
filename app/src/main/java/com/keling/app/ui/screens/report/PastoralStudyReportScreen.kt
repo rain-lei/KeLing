@@ -13,6 +13,7 @@ package com.keling.app.ui.screens.report
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,24 +24,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.keling.app.R
 import com.keling.app.data.StudyReport
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.random.Random
 
 @Composable
 fun PastoralStudyReportScreen(
@@ -58,12 +58,15 @@ fun PastoralStudyReportScreen(
     val report = viewModel.latestReport.value
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(PastoralGradients.morningGarden))
+        modifier = Modifier.fillMaxSize()
     ) {
-        // 背景装饰
-        ReportBackgroundDecorations()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         LazyColumn(
             modifier = Modifier
@@ -206,7 +209,7 @@ private fun ReportOverviewCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 4.dp
     ) {
         Column(
@@ -371,7 +374,7 @@ private fun AIInsightCard(insight: String) {
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Row(
@@ -420,7 +423,7 @@ private fun StudyDataSection(report: StudyReport?) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -493,7 +496,7 @@ private fun AnalysisSection(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -536,48 +539,3 @@ private fun AnalysisSection(
     }
 }
 
-// ==================== 背景装饰 ====================
-
-@Composable
-private fun ReportBackgroundDecorations() {
-    val decorations = remember { List(8) { DecorationParticle() } }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        decorations.forEach { particle ->
-            FloatingDecoration(particle = particle)
-        }
-    }
-}
-
-private class DecorationParticle {
-    val x = Random.nextFloat()
-    val y = Random.nextFloat()
-    val size = Random.nextInt(4, 10)
-    val alpha = Random.nextFloat() * 0.08f + 0.03f
-    val speed = Random.nextInt(4000, 8000)
-}
-
-@Composable
-private fun FloatingDecoration(particle: DecorationParticle) {
-    val alpha by rememberInfiniteTransition(label = "deco").animateFloat(
-        initialValue = particle.alpha * 0.5f,
-        targetValue = particle.alpha,
-        animationSpec = infiniteRepeatable(
-            animation = tween(particle.speed, easing = EaseInOutSine),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "alpha"
-    )
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .drawBehind {
-                drawCircle(
-                    color = SkyBlue.copy(alpha = alpha),
-                    radius = particle.size.dp.toPx(),
-                    center = Offset(particle.x * size.width, particle.y * size.height)
-                )
-            }
-    )
-}

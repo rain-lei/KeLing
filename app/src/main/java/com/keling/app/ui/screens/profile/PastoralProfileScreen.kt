@@ -14,6 +14,7 @@ package com.keling.app.ui.screens.profile
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -36,15 +37,16 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.keling.app.data.AchievementCategory
+import com.keling.app.R
 import com.keling.app.data.Achievement
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
-import kotlin.random.Random
 
 @Composable
 fun PastoralProfileScreen(
@@ -80,12 +82,15 @@ fun PastoralProfileScreen(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(PastoralGradients.morningGarden))
+        modifier = Modifier.fillMaxSize()
     ) {
-        // 背景装饰
-        ProfileBackgroundDecorations()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         LazyColumn(
             modifier = Modifier
@@ -243,7 +248,7 @@ private fun UserProfileCard(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 4.dp
     ) {
         Column(
@@ -383,7 +388,7 @@ private fun StatisticsSection(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -548,7 +553,7 @@ private fun QuickActionCard(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(16.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(
@@ -594,7 +599,7 @@ private fun AchievementPreview(
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
@@ -732,52 +737,5 @@ private fun EditNameDialog(
                 Text("取消", color = EarthBrownLight)
             }
         }
-    )
-}
-
-/**
- * 背景装饰
- */
-@Composable
-private fun ProfileBackgroundDecorations() {
-    val decorations = remember { List(6) { DecorationParticle() } }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        decorations.forEach { particle ->
-            FloatingDecoration(particle = particle)
-        }
-    }
-}
-
-private class DecorationParticle {
-    val x = Random.nextFloat()
-    val y = Random.nextFloat()
-    val size = Random.nextInt(4, 10)
-    val alpha = Random.nextFloat() * 0.08f + 0.03f
-    val speed = Random.nextInt(4000, 8000)
-}
-
-@Composable
-private fun FloatingDecoration(particle: DecorationParticle) {
-    val alpha by rememberInfiniteTransition(label = "deco").animateFloat(
-        initialValue = particle.alpha * 0.5f,
-        targetValue = particle.alpha,
-        animationSpec = infiniteRepeatable(
-            animation = tween(particle.speed, easing = EaseInOutSine),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "alpha"
-    )
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .drawBehind {
-                drawCircle(
-                    color = MintGreen.copy(alpha = alpha),
-                    radius = particle.size.dp.toPx(),
-                    center = Offset(particle.x * size.width, particle.y * size.height)
-                )
-            }
     )
 }

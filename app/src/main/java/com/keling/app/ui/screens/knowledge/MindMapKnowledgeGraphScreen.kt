@@ -17,6 +17,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -37,12 +38,15 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.keling.app.R
 import com.keling.app.data.KnowledgeNode
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
@@ -237,16 +241,22 @@ fun MindMapKnowledgeGraphScreen(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(PastoralGradients.morningGarden))
+        modifier = Modifier.fillMaxSize()
     ) {
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
         // 顶部导航栏
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.TopCenter),
-            color = CreamWhite.copy(alpha = 0.95f),
+            color = Color.Transparent,
             shadowElevation = 2.dp
         ) {
             Row(
@@ -455,7 +465,7 @@ fun MindMapKnowledgeGraphScreen(
                 .align(Alignment.BottomEnd)
                 .padding(16.dp),
             shape = RoundedCornerShape(12.dp),
-            color = CreamWhite.copy(alpha = 0.95f),
+            color = Color.Transparent,
             shadowElevation = 2.dp
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
@@ -523,7 +533,7 @@ private fun MindMapNodeView(
                 )
             },
         shape = RoundedCornerShape(12.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(

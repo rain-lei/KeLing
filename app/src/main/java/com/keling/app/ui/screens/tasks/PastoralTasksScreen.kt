@@ -83,12 +83,15 @@ fun PastoralTasksScreen(
     )
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.verticalGradient(PastoralGradients.morningGarden))
+        modifier = Modifier.fillMaxSize()
     ) {
-        // 多层背景
-        EnhancedTasksBackground()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_pastoral_theme),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         LazyColumn(
             modifier = Modifier
@@ -252,7 +255,7 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
                     topLeft = Offset(-4.dp.toPx(), -4.dp.toPx())
                 )
             }
-            .background(CreamWhite, RoundedCornerShape(20.dp))
+            .background(Color.Transparent, RoundedCornerShape(20.dp))
             .padding(horizontal = 8.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -344,7 +347,7 @@ private fun EnhancedTaskOverview(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 4.dp
     ) {
         Box(
@@ -569,7 +572,7 @@ private fun EnhancedFilterTabs(
                         }
                     },
                 shape = RoundedCornerShape(16.dp),
-                color = if (isSelected) color.copy(alpha = 0.12f) else CreamWhite,
+                color = if (isSelected) color.copy(alpha = 0.12f) else Color.Transparent,
                 border = if (isSelected) {
                     androidx.compose.foundation.BorderStroke(2.dp, color)
                 } else null,
@@ -662,7 +665,7 @@ private fun EnhancedTaskCard(
                 )
             },
         shape = RoundedCornerShape(20.dp),
-        color = if (isCompleted) MintGreen.copy(alpha = 0.06f) else CreamWhite,
+        color = if (isCompleted) MintGreen.copy(alpha = 0.06f) else Color.Transparent,
         shadowElevation = if (isCompleted) 0.dp else 3.dp
     ) {
         Row(
@@ -872,7 +875,7 @@ private fun EnhancedEmptyState(
                 )
             },
         shape = RoundedCornerShape(24.dp),
-        color = CreamWhite,
+        color = Color.Transparent,
         shadowElevation = 2.dp
     ) {
         Column(
