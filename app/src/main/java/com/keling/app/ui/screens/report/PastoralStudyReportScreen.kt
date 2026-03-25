@@ -216,18 +216,19 @@ private fun ReportOverviewCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             // 报告图标
             Box(
                 modifier = Modifier.size(100.dp),
@@ -306,6 +307,7 @@ private fun ReportOverviewCard(
                     color = CreamYellow
                 )
             }
+        }
         }
     }
 }
@@ -387,16 +389,17 @@ private fun AIInsightCard(insight: String) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Row(
-            modifier = Modifier.padding(20.dp),
-            verticalAlignment = Alignment.Top
-        ) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Row(
+                modifier = Modifier.padding(20.dp),
+                verticalAlignment = Alignment.Top
+            ) {
             // AI图标
             Surface(
                 shape = RoundedCornerShape(14.dp),
@@ -428,6 +431,7 @@ private fun AIInsightCard(insight: String) {
                 )
             }
         }
+        }
     }
 }
 
@@ -442,39 +446,41 @@ private fun StudyDataSection(report: StudyReport?) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(modifier = Modifier.padding(20.dp)) {
-            Text(
-                text = "学习数据详情",
-                style = MaterialTheme.typography.titleMedium,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
             )
+            Column(modifier = Modifier.padding(20.dp)) {
+                Text(
+                    text = "学习数据详情",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            // 数据条目
-            DataRow(
-                label = "本周学习时长",
-                value = "${report?.totalStudyMinutes ?: 0} 分钟"
-            )
-            DataRow(
-                label = "完成任务数",
-                value = "${report?.completedTasks ?: 0} 个"
-            )
-            DataRow(
-                label = "学习课程数",
-                value = "${report?.coursesStudied ?: 0} 门"
-            )
-            DataRow(
-                label = "平均掌握度",
-                value = "${((report?.averageMastery ?: 0f) * 100).toInt()}%"
-            )
+                // 数据条目
+                DataRow(
+                    label = "本周学习时长",
+                    value = "${report?.totalStudyMinutes ?: 0} 分钟"
+                )
+                DataRow(
+                    label = "完成任务数",
+                    value = "${report?.completedTasks ?: 0} 个"
+                )
+                DataRow(
+                    label = "学习课程数",
+                    value = "${report?.coursesStudied ?: 0} 门"
+                )
+                DataRow(
+                    label = "平均掌握度",
+                    value = "${((report?.averageMastery ?: 0f) * 100).toInt()}%"
+                )
+            }
         }
     }
 }
@@ -521,45 +527,47 @@ private fun AnalysisSection(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(modifier = Modifier.padding(20.dp)) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium,
-                color = color,
-                fontWeight = FontWeight.Bold
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
             )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            if (items.isEmpty()) {
+            Column(modifier = Modifier.padding(20.dp)) {
                 Text(
-                    text = "暂无数据",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = EarthBrownLight
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = color,
+                    fontWeight = FontWeight.Bold
                 )
-            } else {
-                items.forEach { item ->
-                    Row(
-                        modifier = Modifier.padding(vertical = 6.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Surface(
-                            shape = CircleShape,
-                            color = color.copy(alpha = 0.2f),
-                            modifier = Modifier.size(8.dp)
-                        ) {}
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = item,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = EarthBrown
-                        )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                if (items.isEmpty()) {
+                    Text(
+                        text = "暂无数据",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = EarthBrownLight
+                    )
+                } else {
+                    items.forEach { item ->
+                        Row(
+                            modifier = Modifier.padding(vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Surface(
+                                shape = CircleShape,
+                                color = color.copy(alpha = 0.2f),
+                                modifier = Modifier.size(8.dp)
+                            ) {}
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = item,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = EarthBrown
+                            )
+                        }
                     }
                 }
             }

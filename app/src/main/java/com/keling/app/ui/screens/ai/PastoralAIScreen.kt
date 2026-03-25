@@ -484,13 +484,14 @@ private fun PastoralConfirmCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(modifier = Modifier.padding(16.dp)) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "✿ 精灵为你设计了一个学习任务",
                 style = MaterialTheme.typography.bodyMedium,
@@ -522,6 +523,7 @@ private fun PastoralConfirmCard(
                     Text("确认创建")
                 }
             }
+            }
         }
     }
 }
@@ -547,13 +549,14 @@ private fun PastoralKnowledgeCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(modifier = Modifier.padding(16.dp)) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "✿ 知识图谱已更新（${courseName}）",
                 style = MaterialTheme.typography.bodyMedium,
@@ -588,6 +591,7 @@ private fun PastoralKnowledgeCard(
                 TextButton(onClick = onOpenGraph) {
                     Text("打开图谱", color = WarmSunOrange)
                 }
+            }
             }
         }
     }

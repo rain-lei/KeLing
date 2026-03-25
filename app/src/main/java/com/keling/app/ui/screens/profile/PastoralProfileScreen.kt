@@ -255,43 +255,43 @@ private fun UserProfileCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box {
+            // 背景图片 - 自适应卡片大小
             Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
+                painter = painterResource(id = R.drawable.bg_card_module),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.matchParentSize(),
                 contentScale = ContentScale.FillBounds
             )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // 头像
-            Box(
-                modifier = Modifier.size(100.dp),
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // 光晕
+                // 头像
                 Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .blur(20.dp)
-                        .graphicsLayer { alpha = glowAlpha }
-                        .background(WarmSunOrange, CircleShape)
-                )
-
-                Surface(
-                    modifier = Modifier.size(88.dp),
-                    shape = CircleShape,
-                    color = WarmSunOrange
+                    modifier = Modifier.size(100.dp),
+                    contentAlignment = Alignment.Center
                 ) {
+                    // 光晕
                     Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier
+                            .matchParentSize()
+                            .blur(20.dp)
+                            .graphicsLayer { alpha = glowAlpha }
+                            .background(WarmSunOrange, CircleShape)
+                    )
+
+                    Surface(
+                        modifier = Modifier.size(88.dp),
+                        shape = CircleShape,
+                        color = WarmSunOrange
                     ) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
                         Text(text = "🧑‍🚀", fontSize = 40.sp)
                     }
                 }
@@ -348,6 +348,7 @@ private fun UserProfileCard(
                 ResourceDisplay(icon = "💎", value = user.crystals, label = "结晶", color = LavenderPurple)
                 ResourceDisplay(icon = "🏆", value = unlockedAchievements, label = "成就", color = CreamYellow)
             }
+            }
         }
     }
 }
@@ -403,29 +404,29 @@ private fun StatisticsSection(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box {
+            // 背景图片 - 自适应卡片大小
             Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
+                painter = painterResource(id = R.drawable.bg_card_module),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.matchParentSize(),
                 contentScale = ContentScale.FillBounds
             )
-        }
-        Column(modifier = Modifier.padding(20.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "学习统计",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = EarthBrown,
-                    fontWeight = FontWeight.Bold
-                )
+            Column(modifier = Modifier.padding(20.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "学习统计",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = EarthBrown,
+                        fontWeight = FontWeight.Bold
+                    )
 
-                TextButton(onClick = onViewReport) {
-                    Text("查看报告", color = WarmSunOrange, style = MaterialTheme.typography.labelMedium)
+                    TextButton(onClick = onViewReport) {
+                        Text("查看报告", color = WarmSunOrange, style = MaterialTheme.typography.labelMedium)
                 }
             }
 
@@ -468,6 +469,7 @@ private fun StatisticsSection(
                     label = "学习笔记",
                     modifier = Modifier.weight(1f)
                 )
+            }
             }
         }
     }
@@ -576,41 +578,42 @@ private fun QuickActionCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box {
+            // 背景图片 - 自适应卡片大小
             Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
+                painter = painterResource(id = R.drawable.bg_card_module),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.matchParentSize(),
                 contentScale = ContentScale.FillBounds
             )
-        }
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Surface(
-                shape = RoundedCornerShape(12.dp),
-                color = color.copy(alpha = 0.2f)
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Box(
-                    modifier = Modifier.padding(12.dp),
-                    contentAlignment = Alignment.Center
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = color.copy(alpha = 0.2f)
                 ) {
-                    Text(text = icon, fontSize = 24.sp)
+                    Box(
+                        modifier = Modifier.padding(12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = icon, fontSize = 24.sp)
+                    }
                 }
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = EarthBrownLight
+                )
             }
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = title,
-                style = MaterialTheme.typography.labelLarge,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.labelSmall,
-                color = EarthBrownLight
-            )
         }
     }
 }
@@ -630,40 +633,40 @@ private fun AchievementPreview(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box {
+            // 背景图片 - 自适应卡片大小
             Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
+                painter = painterResource(id = R.drawable.bg_card_module),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.matchParentSize(),
                 contentScale = ContentScale.FillBounds
             )
-        }
-        Column(modifier = Modifier.padding(20.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "已解锁成就",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = EarthBrown,
-                    fontWeight = FontWeight.Bold
-                )
+            Column(modifier = Modifier.padding(20.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "已解锁成就",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = EarthBrown,
+                        fontWeight = FontWeight.Bold
+                    )
 
-                TextButton(onClick = onViewAll) {
-                    Text("查看全部", color = WarmSunOrange, style = MaterialTheme.typography.labelMedium)
+                    TextButton(onClick = onViewAll) {
+                        Text("查看全部", color = WarmSunOrange, style = MaterialTheme.typography.labelMedium)
+                    }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
-            if (achievements.isEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp),
-                    contentAlignment = Alignment.Center
+                if (achievements.isEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
+                        contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "还没有解锁成就，快去学习吧~",
@@ -679,6 +682,7 @@ private fun AchievementPreview(
                         AchievementChip(achievement = achievement)
                     }
                 }
+            }
             }
         }
     }

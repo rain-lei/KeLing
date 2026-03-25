@@ -259,18 +259,19 @@ fun MindMapKnowledgeGraphScreen(
             color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.FillBounds
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Box {
+                Image(
+                    painter = painterResource(id = R.drawable.bg_card_module),
+                    contentDescription = null,
+                    modifier = Modifier.matchParentSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                 // 返回按钮
                 Surface(
                     onClick = onBack,
@@ -338,6 +339,7 @@ fun MindMapKnowledgeGraphScreen(
                     }
                 }
             }
+        }
         }
 
         // 主画布区域
@@ -478,36 +480,38 @@ fun MindMapKnowledgeGraphScreen(
             color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.FillBounds
-            )
-            Column(modifier = Modifier.padding(12.dp)) {
-                Text(
-                    text = "层级图例",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = EarthBrown,
-                    fontWeight = FontWeight.Bold
+            Box {
+                Image(
+                    painter = painterResource(id = R.drawable.bg_card_module),
+                    contentDescription = null,
+                    modifier = Modifier.matchParentSize(),
+                    contentScale = ContentScale.FillBounds
                 )
-                Spacer(modifier = Modifier.height(8.dp))
-                LevelColors.take(5).forEachIndexed { index, color ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(vertical = 2.dp)
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(12.dp)
-                                .background(color, CircleShape)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "第${index + 1}层",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = EarthBrownLight
-                        )
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(
+                        text = "层级图例",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = EarthBrown,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    LevelColors.take(5).forEachIndexed { index, color ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(vertical = 2.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(12.dp)
+                                    .background(color, CircleShape)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "第${index + 1}层",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = EarthBrownLight
+                            )
+                        }
                     }
                 }
             }
@@ -552,53 +556,55 @@ private fun MindMapNodeView(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)
-        ) {
-            // 节点名称
-            Text(
-                text = node.name,
-                style = MaterialTheme.typography.bodyMedium,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
             )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            // 掌握度进度条
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp))
-                    .background(BeigeSurface)
+            Column(
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)
             ) {
+                // 节点名称
+                Text(
+                    text = node.name,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // 掌握度进度条
                 Box(
                     modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(node.masteryLevel.coerceIn(0f, 1f))
-                        .background(color)
+                        .fillMaxWidth()
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(BeigeSurface)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(node.masteryLevel.coerceIn(0f, 1f))
+                            .background(color)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // 掌握度文本
+                Text(
+                    text = "${(node.masteryLevel * 100).toInt()}%",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = if (node.masteryLevel >= 0.6f) MintGreen
+                           else if (node.masteryLevel >= 0.3f) WarmSunOrange
+                           else RoseRed
                 )
             }
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            // 掌握度文本
-            Text(
-                text = "${(node.masteryLevel * 100).toInt()}%",
-                style = MaterialTheme.typography.labelSmall,
-                color = if (node.masteryLevel >= 0.6f) MintGreen
-                       else if (node.masteryLevel >= 0.3f) WarmSunOrange
-                       else RoseRed
-            )
         }
     }
 }

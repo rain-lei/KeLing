@@ -349,32 +349,34 @@ private fun EnhancedTaskOverview(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .drawBehind {
-                    val shimmerWidth = size.width * 0.3f
-                    val shimmerX = size.width * (shimmer + 1) / 2
-                    drawRect(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.White.copy(alpha = 0.2f),
-                                Color.Transparent
-                            ),
-                            startX = shimmerX - shimmerWidth,
-                            endX = shimmerX + shimmerWidth
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .drawBehind {
+                        val shimmerWidth = size.width * 0.3f
+                        val shimmerX = size.width * (shimmer + 1) / 2
+                        drawRect(
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.White.copy(alpha = 0.2f),
+                                    Color.Transparent
+                                ),
+                                startX = shimmerX - shimmerWidth,
+                                endX = shimmerX + shimmerWidth
+                            )
                         )
-                    )
-                }
-        ) {
-            Column(modifier = Modifier.padding(24.dp)) {
+                    }
+            ) {
+                Column(modifier = Modifier.padding(24.dp)) {
                 // 统计行
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -471,6 +473,7 @@ private fun EnhancedTaskOverview(
                     }
                 }
             }
+        }
         }
     }
 }
@@ -883,18 +886,20 @@ private fun EnhancedEmptyState(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(36.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(36.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -965,6 +970,7 @@ private fun EnhancedEmptyState(
                         )
                     }
                 }
+            }
             }
         }
     }

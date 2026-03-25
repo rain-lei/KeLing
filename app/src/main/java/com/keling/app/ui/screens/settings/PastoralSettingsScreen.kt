@@ -239,13 +239,15 @@ private fun SettingsSection(
             color = CreamWhite.copy(alpha = 0.8f),
             shadowElevation = 0.dp
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.bg_page_theme),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.FillBounds
-            )
-            Column(content = content)
+            Box {
+                Image(
+                    painter = painterResource(id = R.drawable.bg_card_module),
+                    contentDescription = null,
+                    modifier = Modifier.matchParentSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+                Column(content = content)
+            }
         }
     }
 }

@@ -1388,19 +1388,20 @@ private fun GlassmorphismGreetingHeader(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 // 头像
                 Box(
                     modifier = Modifier.size(64.dp),
@@ -1471,6 +1472,7 @@ private fun GlassmorphismGreetingHeader(
                     GlassmorphismResourceBadge(icon = "⚡", value = user.energy, color = WarmSunOrange)
                     GlassmorphismResourceBadge(icon = "✿", value = user.crystals, color = LavenderPurple)
                 }
+            }
         }
     }
 }
@@ -1545,75 +1547,77 @@ private fun GlassmorphismSpiritCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-                // 精灵图标
-                Box(
-                    modifier = Modifier.size(72.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Surface(
-                        modifier = Modifier.size(60.dp),
-                        shape = CircleShape,
-                        color = Color.Transparent
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_planet_sprite),
-                            contentDescription = "星球精灵",
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.width(18.dp))
-
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "星球精灵在线",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = EarthBrown,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 17.sp
-                    )
-
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    Text(
-                        text = if (pendingTasks > 0) "$pendingTasks 个星球等待培育"
-                        else "点击与精灵对话",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = EarthBrown.copy(alpha = 0.6f)
-                    )
-                }
-
-                Surface(
-                    shape = RoundedCornerShape(14.dp),
-                    color = WarmSunOrange
-                ) {
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                    // 精灵图标
                     Box(
-                        modifier = Modifier.padding(10.dp),
+                        modifier = Modifier.size(72.dp),
                         contentAlignment = Alignment.Center
                     ) {
+                        Surface(
+                            modifier = Modifier.size(60.dp),
+                            shape = CircleShape,
+                            color = Color.Transparent
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_planet_sprite),
+                                contentDescription = "星球精灵",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.width(18.dp))
+
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "→",
+                            text = "星球精灵在线",
                             style = MaterialTheme.typography.titleMedium,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
+                            color = EarthBrown,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 17.sp
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Text(
+                            text = if (pendingTasks > 0) "$pendingTasks 个星球等待培育"
+                            else "点击与精灵对话",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = EarthBrown.copy(alpha = 0.6f)
                         )
                     }
-                }
+
+                    Surface(
+                        shape = RoundedCornerShape(14.dp),
+                        color = WarmSunOrange
+                    ) {
+                        Box(
+                            modifier = Modifier.padding(10.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "→",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+            }
         }
     }
 }
@@ -1724,50 +1728,52 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(36.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Surface(
-                shape = CircleShape,
-                color = MintGreen.copy(alpha = 0.2f),
-                modifier = Modifier.size(80.dp)
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(36.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                Surface(
+                    shape = CircleShape,
+                    color = MintGreen.copy(alpha = 0.2f),
+                    modifier = Modifier.size(80.dp)
                 ) {
-                    Text(text = "🌍", fontSize = 38.sp)
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "🌍", fontSize = 38.sp)
+                    }
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "花园还是空的",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = "种下你的第一颗知识星球",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = EarthBrown.copy(alpha = 0.5f)
+                )
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "花园还是空的",
-                style = MaterialTheme.typography.titleMedium,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                text = "种下你的第一颗知识星球",
-                style = MaterialTheme.typography.bodySmall,
-                color = EarthBrown.copy(alpha = 0.5f)
-            )
-            }
+        }
     }
 }
 
@@ -1904,13 +1910,12 @@ private fun GlassmorphismQuickAccessSection(onNavigate: (String) -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // 四个图标紧密排列成一列
+        // 四个图标紧密排列成一列 - 自适应高度
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
                     .padding(horizontal = 12.dp, vertical = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(0.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 GlassmorphismQuickAccessCard(
                     iconRes = R.drawable.ic_greenhouse,
@@ -1969,54 +1974,50 @@ private fun GlassmorphismQuickAccessCard(
         shape = RoundedCornerShape(20.dp),
         color = CreamWhite.copy(alpha = 0.8f)
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(vertical = 8.dp, horizontal = 4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // 图标图片 - 圆形显示，放大填满剩余空间
-            Surface(
-                modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f)
-                    .fillMaxSize(),
-                shape = CircleShape,
-                color = Color.Transparent
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            // 内容决定卡片大小
+            Column(
+                modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(id = iconRes),
-                    contentDescription = title,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                // 图标图片
+                Surface(
+                    modifier = Modifier.size(52.dp),
+                    shape = CircleShape,
+                    color = Color.Transparent
+                ) {
+                    Image(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = title,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleSmall,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp
+                )
+
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = EarthBrown.copy(alpha = 0.6f),
+                    fontSize = 9.sp
                 )
             }
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleSmall,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold,
-                fontSize = 12.sp
-            )
-
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.labelSmall,
-                color = EarthBrown.copy(alpha = 0.6f),
-                fontSize = 9.sp
-            )
         }
     }
 }
@@ -2048,50 +2049,52 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(28.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Surface(
-                shape = CircleShape,
-                color = WarmSunOrange.copy(alpha = 0.15f),
-                modifier = Modifier.size(64.dp)
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(28.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                Surface(
+                    shape = CircleShape,
+                    color = WarmSunOrange.copy(alpha = 0.15f),
+                    modifier = Modifier.size(64.dp)
                 ) {
-                    Text(text = "🎯", fontSize = 32.sp)
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "🎯", fontSize = 32.sp)
+                    }
                 }
+
+                Spacer(modifier = Modifier.height(14.dp))
+
+                Text(
+                    text = "今日暂无培育计划",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = "和星球精灵聊聊，让它帮你制定计划",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = EarthBrown.copy(alpha = 0.5f),
+                    textAlign = TextAlign.Center
+                )
             }
-
-            Spacer(modifier = Modifier.height(14.dp))
-
-            Text(
-                text = "今日暂无培育计划",
-                style = MaterialTheme.typography.bodyMedium,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Text(
-                text = "和星球精灵聊聊，让它帮你制定计划",
-                style = MaterialTheme.typography.bodySmall,
-                color = EarthBrown.copy(alpha = 0.5f),
-                textAlign = TextAlign.Center
-            )
-            }
+        }
     }
 }
 
@@ -2152,93 +2155,95 @@ private fun GlassmorphismTaskCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        // 背景图片
-        Image(
-            painter = painterResource(id = R.drawable.bg_card_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(12.dp),
-                color = priorityColor.copy(alpha = 0.15f)
+        Box {
+            // 背景图片 - 自适应卡片大小
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_home),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    contentAlignment = Alignment.Center
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = priorityColor.copy(alpha = 0.15f)
                 ) {
-                    Text(
-                        text = "${index + 1}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = priorityColor,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.width(14.dp))
-
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = task.title,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = EarthBrown,
-                    fontWeight = FontWeight.Medium,
-                    maxLines = 1
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Surface(
-                        shape = RoundedCornerShape(6.dp),
-                        color = priorityColor.copy(alpha = 0.15f)
+                    Box(
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "P${task.priority}",
-                            style = MaterialTheme.typography.labelSmall,
+                            text = "${index + 1}",
+                            style = MaterialTheme.typography.labelMedium,
                             color = priorityColor,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(14.dp))
+
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = task.title,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = EarthBrown,
+                        fontWeight = FontWeight.Medium,
+                        maxLines = 1
+                    )
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = priorityColor.copy(alpha = 0.15f)
+                        ) {
+                            Text(
+                                text = "P${task.priority}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = priorityColor,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Text(
+                            text = "${task.estimatedMinutes}分钟",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = EarthBrown.copy(alpha = 0.5f)
+                        )
+                    }
+                }
+
+                Column(horizontalAlignment = Alignment.End) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "⚡", fontSize = 14.sp)
+                        Spacer(modifier = Modifier.width(3.dp))
+                        Text(
+                            text = "+${task.rewards.energy}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = WarmSunOrange,
+                            fontWeight = FontWeight.Bold
                         )
                     }
 
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    Text(
-                        text = "${task.estimatedMinutes}分钟",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = EarthBrown.copy(alpha = 0.5f)
-                    )
-                }
-            }
-
-            Column(horizontalAlignment = Alignment.End) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "⚡", fontSize = 14.sp)
-                    Spacer(modifier = Modifier.width(3.dp))
-                    Text(
-                        text = "+${task.rewards.energy}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = WarmSunOrange,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-
-                if (task.rewards.crystals > 0) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "✿", fontSize = 12.sp)
-                        Spacer(modifier = Modifier.width(3.dp))
-                        Text(
-                            text = "+${task.rewards.crystals}",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = LavenderPurple,
-                            fontWeight = FontWeight.Bold
-                        )
+                    if (task.rewards.crystals > 0) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "✿", fontSize = 12.sp)
+                            Spacer(modifier = Modifier.width(3.dp))
+                            Text(
+                                text = "+${task.rewards.crystals}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = LavenderPurple,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
                     }
                 }
             }

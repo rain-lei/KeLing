@@ -233,16 +233,17 @@ private fun AINoteCard(onAskAI: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Row(
-            modifier = Modifier.padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Row(
+                modifier = Modifier.padding(20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
             // AI图标
             Surface(
                 shape = RoundedCornerShape(16.dp),
@@ -278,6 +279,7 @@ private fun AINoteCard(onAskAI: () -> Unit) {
                 contentDescription = null,
                 modifier = Modifier.size(60.dp)
             )
+        }
         }
     }
 }
@@ -335,15 +337,16 @@ private fun NoteCard(
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier.padding(20.dp)
-        ) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier.padding(20.dp)
+            ) {
             // 标题和来源
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -413,6 +416,7 @@ private fun NoteCard(
                 }
             }
         }
+        }
     }
 }
 
@@ -439,18 +443,19 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
         color = CreamWhite.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_module),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             Box(
                 modifier = Modifier
                     .graphicsLayer { translationY = floatOffset }
@@ -510,6 +515,7 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
                     )
                 }
             }
+        }
         }
     }
 }
