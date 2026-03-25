@@ -231,7 +231,7 @@ private fun PastoralGreenhouseHeader(
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
             color = CreamWhite,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -315,7 +315,7 @@ private fun GreenhouseOverview(
             },
         shape = RoundedCornerShape(20.dp),
         color = CreamWhite,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Row(
             modifier = Modifier
@@ -428,7 +428,7 @@ private fun PastoralPlanetCard(
             },
         shape = RoundedCornerShape(20.dp),
         color = CreamWhite,
-        shadowElevation = 3.dp
+        shadowElevation = 0.dp
     ) {
         Row(
             modifier = Modifier
@@ -620,7 +620,7 @@ private fun EmptyGardenPlanetState(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
         color = CreamWhite,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier

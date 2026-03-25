@@ -348,7 +348,7 @@ private fun EnhancedTaskOverview(
             },
         shape = RoundedCornerShape(24.dp),
         color = Color.Transparent,
-        shadowElevation = 4.dp
+        shadowElevation = 0.dp
     ) {
         Box(
             modifier = Modifier
@@ -576,7 +576,7 @@ private fun EnhancedFilterTabs(
                 border = if (isSelected) {
                     androidx.compose.foundation.BorderStroke(2.dp, color)
                 } else null,
-                shadowElevation = if (isSelected) 0.dp else 2.dp
+                shadowElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp),
@@ -666,7 +666,7 @@ private fun EnhancedTaskCard(
             },
         shape = RoundedCornerShape(20.dp),
         color = if (isCompleted) MintGreen.copy(alpha = 0.06f) else Color.Transparent,
-        shadowElevation = if (isCompleted) 0.dp else 3.dp
+        shadowElevation = 0.dp
     ) {
         Row(
             modifier = Modifier.padding(18.dp),
@@ -876,7 +876,7 @@ private fun EnhancedEmptyState(
             },
         shape = RoundedCornerShape(24.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier

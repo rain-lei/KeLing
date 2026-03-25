@@ -257,7 +257,7 @@ fun MindMapKnowledgeGraphScreen(
                 .fillMaxWidth()
                 .align(Alignment.TopCenter),
             color = Color.Transparent,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Row(
                 modifier = Modifier
@@ -466,7 +466,7 @@ fun MindMapKnowledgeGraphScreen(
                 .padding(16.dp),
             shape = RoundedCornerShape(12.dp),
             color = Color.Transparent,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
@@ -534,7 +534,7 @@ private fun MindMapNodeView(
             },
         shape = RoundedCornerShape(12.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)

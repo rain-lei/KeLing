@@ -147,7 +147,7 @@ private fun ReportHeader(onBack: () -> Unit) {
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
             color = CreamWhite,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -210,7 +210,7 @@ private fun ReportOverviewCard(
             },
         shape = RoundedCornerShape(24.dp),
         color = Color.Transparent,
-        shadowElevation = 4.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier
@@ -375,7 +375,7 @@ private fun AIInsightCard(insight: String) {
             },
         shape = RoundedCornerShape(20.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Row(
             modifier = Modifier.padding(20.dp),
@@ -424,7 +424,7 @@ private fun StudyDataSection(report: StudyReport?) {
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(
@@ -497,7 +497,7 @@ private fun AnalysisSection(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(

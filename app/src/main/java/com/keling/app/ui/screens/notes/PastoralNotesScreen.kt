@@ -155,7 +155,7 @@ private fun NotesHeader(
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
             color = CreamWhite,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -227,7 +227,7 @@ private fun AINoteCard(onAskAI: () -> Unit) {
             },
         shape = RoundedCornerShape(20.dp),
         color = Color.Transparent,
-        shadowElevation = 3.dp
+        shadowElevation = 0.dp
     ) {
         Row(
             modifier = Modifier.padding(20.dp),
@@ -319,7 +319,7 @@ private fun NoteCard(
             },
         shape = RoundedCornerShape(20.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier.padding(20.dp)
@@ -417,7 +417,7 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(
             modifier = Modifier

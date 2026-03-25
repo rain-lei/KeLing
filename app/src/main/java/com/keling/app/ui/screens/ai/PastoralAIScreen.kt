@@ -341,7 +341,7 @@ private fun PastoralAIHeader(
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
             color = CreamWhite,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -429,7 +429,7 @@ private fun PastoralMessageBubble(message: ChatMessageUi) {
             } else {
                 CreamWhite
             },
-            shadowElevation = if (isUser) 0.dp else 2.dp,
+            shadowElevation = 0.dp,
             modifier = Modifier.fillMaxWidth(0.85f)
         ) {
             Column(modifier = Modifier.padding(14.dp)) {
@@ -457,7 +457,7 @@ private fun PastoralSuggestionChip(
         shape = RoundedCornerShape(16.dp),
         color = CreamWhite,
         border = androidx.compose.foundation.BorderStroke(1.dp, WarmSunOrange.copy(alpha = 0.3f)),
-        shadowElevation = 1.dp
+        shadowElevation = 0.dp
     ) {
         Text(
             text = text,
@@ -482,7 +482,7 @@ private fun PastoralConfirmCard(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -539,7 +539,7 @@ private fun PastoralKnowledgeCard(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
         color = Color.Transparent,
-        shadowElevation = 2.dp
+        shadowElevation = 0.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(

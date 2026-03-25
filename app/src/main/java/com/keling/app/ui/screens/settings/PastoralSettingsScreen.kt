@@ -183,7 +183,7 @@ private fun SettingsHeader(onBack: () -> Unit) {
             onClick = onBack,
             shape = RoundedCornerShape(12.dp),
             color = CreamWhite,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -233,7 +233,7 @@ private fun SettingsSection(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
             color = Color.Transparent,
-            shadowElevation = 2.dp
+            shadowElevation = 0.dp
         ) {
             Column(content = content)
         }
