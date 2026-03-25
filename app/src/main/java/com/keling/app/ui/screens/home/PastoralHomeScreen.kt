@@ -1384,18 +1384,22 @@ private fun GlassmorphismGreetingHeader(
         modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = floatOffset }
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.8f),
-                shape = RoundedCornerShape(28.dp)
-            ),
+            .clip(RoundedCornerShape(28.dp)),
         shape = RoundedCornerShape(28.dp),
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
+            // 背景图片
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_section),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1542,18 +1546,22 @@ private fun GlassmorphismSpiritCard(
         modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = floatOffset }
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.8f),
-                shape = RoundedCornerShape(24.dp)
-            ),
+            .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
+            // 背景图片
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_section),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1722,21 +1730,28 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = floatOffset }
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.8f),
-                shape = RoundedCornerShape(24.dp)
-            ),
+            .clip(RoundedCornerShape(24.dp)),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(36.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier.fillMaxWidth()
         ) {
+            // 背景图片
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_section),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(36.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             Surface(
                 shape = CircleShape,
                 color = MintGreen.copy(alpha = 0.2f),
@@ -1767,6 +1782,7 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
                 style = MaterialTheme.typography.bodySmall,
                 color = EarthBrown.copy(alpha = 0.5f)
             )
+            }
         }
     }
 }
@@ -2050,21 +2066,28 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = floatOffset }
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.8f),
-                shape = RoundedCornerShape(22.dp)
-            ),
+            .clip(RoundedCornerShape(22.dp)),
         shape = RoundedCornerShape(22.dp),
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(28.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier.fillMaxWidth()
         ) {
+            // 背景图片
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_section),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(28.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
             Surface(
                 shape = CircleShape,
                 color = WarmSunOrange.copy(alpha = 0.15f),
@@ -2095,6 +2118,7 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
                 color = EarthBrown.copy(alpha = 0.5f),
                 textAlign = TextAlign.Center
             )
+            }
         }
     }
 }
@@ -2151,19 +2175,26 @@ private fun GlassmorphismTaskCard(
         modifier = Modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = floatOffset }
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.8f),
-                shape = RoundedCornerShape(18.dp)
-            ),
+            .clip(RoundedCornerShape(18.dp)),
         shape = RoundedCornerShape(18.dp),
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Transparent,
         shadowElevation = 0.dp
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier.fillMaxWidth()
         ) {
+            // 背景图片
+            Image(
+                painter = painterResource(id = R.drawable.bg_card_section),
+                contentDescription = null,
+                modifier = Modifier.matchParentSize(),
+                contentScale = ContentScale.FillBounds
+            )
+
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
             Surface(
                 shape = RoundedCornerShape(12.dp),
                 color = priorityColor.copy(alpha = 0.15f)
@@ -2242,6 +2273,7 @@ private fun GlassmorphismTaskCard(
                         )
                     }
                 }
+            }
             }
         }
     }
