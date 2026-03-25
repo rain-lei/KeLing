@@ -87,7 +87,7 @@ fun PastoralTasksScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -350,7 +350,7 @@ private fun EnhancedTaskOverview(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -884,7 +884,7 @@ private fun EnhancedEmptyState(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds

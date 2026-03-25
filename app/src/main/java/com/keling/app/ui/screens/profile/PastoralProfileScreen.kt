@@ -86,7 +86,7 @@ fun PastoralProfileScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -257,7 +257,7 @@ private fun UserProfileCard(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.bg_card_theme),
+                painter = painterResource(id = R.drawable.bg_page_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds
@@ -405,7 +405,7 @@ private fun StatisticsSection(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.bg_card_theme),
+                painter = painterResource(id = R.drawable.bg_page_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds
@@ -578,7 +578,7 @@ private fun QuickActionCard(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.bg_card_theme),
+                painter = painterResource(id = R.drawable.bg_page_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds
@@ -632,7 +632,7 @@ private fun AchievementPreview(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.bg_card_theme),
+                painter = painterResource(id = R.drawable.bg_page_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.FillBounds

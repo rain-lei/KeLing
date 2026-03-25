@@ -87,7 +87,7 @@ fun PastoralNotesScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -234,7 +234,7 @@ private fun AINoteCard(onAskAI: () -> Unit) {
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -336,7 +336,7 @@ private fun NoteCard(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -440,7 +440,7 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds

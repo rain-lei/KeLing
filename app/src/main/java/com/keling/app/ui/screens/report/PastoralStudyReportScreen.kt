@@ -62,7 +62,7 @@ fun PastoralStudyReportScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -217,7 +217,7 @@ private fun ReportOverviewCard(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -388,7 +388,7 @@ private fun AIInsightCard(insight: String) {
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -443,7 +443,7 @@ private fun StudyDataSection(report: StudyReport?) {
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -522,7 +522,7 @@ private fun AnalysisSection(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds

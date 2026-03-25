@@ -73,7 +73,7 @@ fun PastoralAchievementsScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -218,7 +218,7 @@ private fun AchievementProgressCard(
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
@@ -437,7 +437,7 @@ private fun AchievementCard(achievement: Achievement) {
         shadowElevation = 0.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_theme),
+            painter = painterResource(id = R.drawable.bg_page_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
