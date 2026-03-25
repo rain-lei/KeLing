@@ -674,11 +674,10 @@ private fun EnhancedSpiritCard(
                         modifier = Modifier.padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "→",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_arrow_right),
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
                         )
                     }
                 }
@@ -779,10 +778,10 @@ private fun EnhancedSectionTitle(
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = "→",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = WarmSunOrange
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_arrow_right),
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp)
                     )
                 }
             }
@@ -1607,11 +1606,10 @@ private fun GlassmorphismSpiritCard(
                         modifier = Modifier.padding(10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "→",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_arrow_right),
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
                         )
                     }
                 }
@@ -1687,10 +1685,10 @@ private fun GlassmorphismSectionTitle(
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = "→",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = WarmSunOrange
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_arrow_right),
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp)
                     )
                 }
             }

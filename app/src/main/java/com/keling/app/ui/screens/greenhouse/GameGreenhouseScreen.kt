@@ -2,6 +2,7 @@ package com.keling.app.ui.screens.greenhouse
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -26,12 +27,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.keling.app.R
 import com.keling.app.data.Course
 import com.keling.app.data.Task
 import com.keling.app.data.TaskStatus
@@ -237,10 +240,10 @@ private fun PastoralGreenhouseHeader(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "←",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = EarthBrown
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_left),
+                    contentDescription = "返回",
+                    modifier = Modifier.size(20.dp)
                 )
             }
         }

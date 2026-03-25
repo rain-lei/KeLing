@@ -270,11 +270,10 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "←",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = WarmSunOrange,
-                    fontWeight = FontWeight.Bold
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_left),
+                    contentDescription = "返回",
+                    modifier = Modifier.size(20.dp)
                 )
             }
         }

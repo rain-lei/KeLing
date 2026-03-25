@@ -2,6 +2,7 @@ package com.keling.app
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -27,6 +28,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
@@ -34,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.keling.app.ai.*
 import com.keling.app.ai.tools.*
+import com.keling.app.R
 import com.keling.app.components.Hexagon
 import com.keling.app.data.KnowledgeNode
 import com.keling.app.data.TaskStatus
@@ -344,12 +348,11 @@ private fun GameNPCHeader(
                     .clickable { onBack() },
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "←",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+                Image(
+                painter = painterResource(id = R.drawable.ic_arrow_left),
+                contentDescription = "返回",
+                modifier = Modifier.size(24.dp)
+            )
             }
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -635,10 +638,10 @@ private fun QuestCard(
             }
 
             // 箭头
-            Text(
-                text = "→",
-                style = MaterialTheme.typography.titleLarge,
-                color = quest.color
+            Image(
+                painter = painterResource(id = R.drawable.ic_arrow_right),
+                contentDescription = null,
+                modifier = Modifier.size(20.dp)
             )
         }
     }

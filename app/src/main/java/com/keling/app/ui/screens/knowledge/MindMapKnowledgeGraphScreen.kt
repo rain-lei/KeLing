@@ -277,11 +277,10 @@ fun MindMapKnowledgeGraphScreen(
                     shape = RoundedCornerShape(12.dp),
                     color = BeigeSurface
                 ) {
-                    Text(
-                        text = "←",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = EarthBrown,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_arrow_left),
+                        contentDescription = "返回",
+                        modifier = Modifier.size(20.dp)
                     )
                 }
 
