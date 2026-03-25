@@ -364,11 +364,11 @@ private fun EnhancedGreetingHeader(
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(28.dp)
             ),
         shape = RoundedCornerShape(28.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -585,11 +585,11 @@ private fun EnhancedSpiritCard(
             }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(24.dp)
             ),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Box(
@@ -832,11 +832,11 @@ private fun EnhancedEmptyGardenCard(onClick: () -> Unit) {
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(24.dp)
             ),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.4f)
+        color = Color.White.copy(alpha = 0.8f)
     ) {
         Column(
             modifier = Modifier
@@ -950,7 +950,7 @@ private fun EnhancedPlanetGardenItem(
         onClick = onClick,
         modifier = Modifier.width(130.dp),
         shape = RoundedCornerShape(22.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -1115,11 +1115,11 @@ private fun EnhancedQuickAccessCard(
         modifier = modifier
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(18.dp)
             ),
         shape = RoundedCornerShape(18.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -1185,11 +1185,11 @@ private fun EnhancedEmptyTaskCard(onClick: () -> Unit) {
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(22.dp)
             ),
         shape = RoundedCornerShape(22.dp),
-        color = Color.White.copy(alpha = 0.4f)
+        color = Color.White.copy(alpha = 0.8f)
     ) {
         Column(
             modifier = Modifier
@@ -1272,11 +1272,11 @@ private fun EnhancedTaskCard(
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(18.dp)
             ),
         shape = RoundedCornerShape(18.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(
@@ -1405,11 +1405,11 @@ private fun GlassmorphismGreetingHeader(
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(28.dp)
             ),
         shape = RoundedCornerShape(28.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Box(
@@ -1515,7 +1515,7 @@ private fun GlassmorphismResourceBadge(
 ) {
     Surface(
         shape = RoundedCornerShape(14.dp),
-        color = Color.White.copy(alpha = 0.4f)
+        color = Color.White.copy(alpha = 0.8f)
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
@@ -1571,11 +1571,11 @@ private fun GlassmorphismSpiritCard(
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(24.dp)
             ),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Box(
@@ -1676,7 +1676,7 @@ private fun GlassmorphismSectionTitle(
             if (icon != null) {
                 Surface(
                     shape = RoundedCornerShape(10.dp),
-                    color = Color.White.copy(alpha = 0.4f)
+                    color = Color.White.copy(alpha = 0.8f)
                 ) {
                     Box(
                         modifier = Modifier.padding(8.dp),
@@ -1711,7 +1711,7 @@ private fun GlassmorphismSectionTitle(
             Surface(
                 onClick = onAction,
                 shape = RoundedCornerShape(12.dp),
-                color = Color.White.copy(alpha = 0.4f)
+                color = Color.White.copy(alpha = 0.8f)
             ) {
                 Row(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
@@ -1759,11 +1759,11 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(24.dp)
             ),
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -1856,11 +1856,11 @@ private fun GlassmorphismPlanetGardenItem(
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(22.dp)
             ),
         shape = RoundedCornerShape(22.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -1956,7 +1956,8 @@ private fun GlassmorphismQuickAccessSection(onNavigate: (String) -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp),
+                    .height(120.dp)
+                    .padding(horizontal = 12.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.spacedBy(0.dp)
             ) {
                 GlassmorphismQuickAccessCard(
@@ -2015,21 +2016,32 @@ private fun GlassmorphismQuickAccessCard(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(20.dp),
-        color = Color.White.copy(alpha = 0.3f)
+        color = Color.Transparent
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 10.dp, horizontal = 6.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxHeight()
+                .padding(vertical = 8.dp, horizontal = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            // 图标图片
-            Image(
-                painter = painterResource(id = iconRes),
-                contentDescription = title,
-                modifier = Modifier.size(64.dp),
-                contentScale = ContentScale.Fit
-            )
+            // 图标图片 - 圆形显示，放大填满剩余空间
+            Surface(
+                modifier = Modifier
+                    .weight(1f)
+                    .aspectRatio(1f)
+                    .fillMaxSize(),
+                shape = CircleShape,
+                color = Color.Transparent
+            ) {
+                Image(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = title,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+            }
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -2038,7 +2050,7 @@ private fun GlassmorphismQuickAccessCard(
                 style = MaterialTheme.typography.titleSmall,
                 color = EarthBrown,
                 fontWeight = FontWeight.Bold,
-                fontSize = 13.sp
+                fontSize = 12.sp
             )
 
             Text(
@@ -2075,11 +2087,11 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(22.dp)
             ),
         shape = RoundedCornerShape(22.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Column(
@@ -2176,11 +2188,11 @@ private fun GlassmorphismTaskCard(
             .graphicsLayer { translationY = floatOffset }
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.4f),
+                color = Color.White.copy(alpha = 0.8f),
                 shape = RoundedCornerShape(18.dp)
             ),
         shape = RoundedCornerShape(18.dp),
-        color = Color.White.copy(alpha = 0.4f),
+        color = Color.White.copy(alpha = 0.8f),
         shadowElevation = 0.dp
     ) {
         Row(

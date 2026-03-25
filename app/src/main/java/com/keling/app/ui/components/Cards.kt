@@ -375,11 +375,11 @@ fun UserAvatar(
                 .background(backgroundColor, CircleShape)
         )
 
-        // 六边形头像
+        // 圆形头像
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .clip(com.keling.app.components.HexagonShape)
+                .clip(CircleShape)
                 .then(
                     if (onClick != null) Modifier.clickable { onClick() }
                     else Modifier
