@@ -423,15 +423,6 @@ private fun PastoralAIHeader(
             modifier = Modifier.size(52.dp),
             contentAlignment = Alignment.Center
         ) {
-            // 光晕
-            Box(
-                modifier = Modifier
-                    .matchParentSize()
-                    .blur(12.dp)
-                    .graphicsLayer { alpha = glowAlpha }
-                    .background(MintGreen, CircleShape)
-            )
-
             Surface(
                 modifier = Modifier.size(48.dp),
                 shape = CircleShape,

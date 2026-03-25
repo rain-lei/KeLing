@@ -630,25 +630,6 @@ private fun EnhancedSpiritCard(
                     modifier = Modifier.size(72.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    // 多层光晕
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .blur(20.dp)
-                            .graphicsLayer { alpha = glowAlpha }
-                            .background(MintGreen, CircleShape)
-                    )
-
-                    // 装饰圆环
-                    Canvas(modifier = Modifier.size(72.dp)) {
-                        drawCircle(
-                            color = MintGreen.copy(alpha = 0.2f),
-                            radius = 32.dp.toPx(),
-                            center = center,
-                            style = Stroke(width = 2.dp.toPx())
-                        )
-                    }
-
                     Surface(
                         modifier = Modifier.size(60.dp),
                         shape = CircleShape,
@@ -1426,14 +1407,6 @@ private fun GlassmorphismGreetingHeader(
                     modifier = Modifier.size(64.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    // 光晕
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .blur(18.dp)
-                            .background(WarmSunOrange.copy(alpha = 0.3f), CircleShape)
-                    )
-
                     Surface(
                         modifier = Modifier.size(54.dp),
                         shape = CircleShape,
@@ -1592,14 +1565,6 @@ private fun GlassmorphismSpiritCard(
                     modifier = Modifier.size(72.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .blur(20.dp)
-                            .graphicsLayer { alpha = glowAlpha }
-                            .background(MintGreen, CircleShape)
-                    )
-
                     Surface(
                         modifier = Modifier.size(60.dp),
                         shape = CircleShape,

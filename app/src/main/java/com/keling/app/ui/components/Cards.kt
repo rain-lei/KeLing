@@ -360,21 +360,10 @@ fun UserAvatar(
     backgroundColor: Color = StellarOrange,
     onClick: (() -> Unit)? = null
 ) {
-    val glowAlpha by rememberGlowPulse(enabled = true, minAlpha = 0.1f, maxAlpha = 0.25f)
-
     Box(
         modifier = Modifier.size(size),
         contentAlignment = Alignment.Center
     ) {
-        // 发光背景
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .blur(10.dp)
-                .graphicsLayer { alpha = glowAlpha }
-                .background(backgroundColor, CircleShape)
-        )
-
         // 圆形头像
         Box(
             modifier = Modifier
