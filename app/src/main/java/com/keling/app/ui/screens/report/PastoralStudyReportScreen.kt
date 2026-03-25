@@ -65,7 +65,7 @@ fun PastoralStudyReportScreen(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
 
         LazyColumn(
@@ -220,7 +220,7 @@ private fun ReportOverviewCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
@@ -391,7 +391,7 @@ private fun AIInsightCard(insight: String) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Row(
             modifier = Modifier.padding(20.dp),
@@ -446,7 +446,7 @@ private fun StudyDataSection(report: StudyReport?) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(modifier = Modifier.padding(20.dp)) {
             Text(
@@ -525,7 +525,7 @@ private fun AnalysisSection(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(modifier = Modifier.padding(20.dp)) {
             Text(

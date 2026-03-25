@@ -76,7 +76,7 @@ fun PastoralAchievementsScreen(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
 
         LazyColumn(
@@ -221,7 +221,7 @@ private fun AchievementProgressCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
@@ -440,7 +440,7 @@ private fun AchievementCard(achievement: Achievement) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Row(
             modifier = Modifier.padding(16.dp),

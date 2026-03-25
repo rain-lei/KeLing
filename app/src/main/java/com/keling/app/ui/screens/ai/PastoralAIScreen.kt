@@ -306,7 +306,7 @@ private fun PastoralAIBackground() {
         painter = painterResource(id = R.drawable.bg_card_theme),
         contentDescription = null,
         modifier = Modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.FillBounds
     )
 }
 
@@ -488,7 +488,7 @@ private fun PastoralConfirmCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -551,7 +551,7 @@ private fun PastoralKnowledgeCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(modifier = Modifier.padding(16.dp)) {
             Text(

@@ -1415,7 +1415,7 @@ private fun GlassmorphismGreetingHeader(
                             painter = painterResource(id = R.drawable.ic_user_avatar),
                             contentDescription = "用户头像",
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.FillBounds
                         )
                     }
                 }
@@ -1572,7 +1572,7 @@ private fun GlassmorphismSpiritCard(
                             painter = painterResource(id = R.drawable.ic_planet_sprite),
                             contentDescription = "星球精灵",
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.FillBounds
                         )
                     }
                 }
@@ -1728,7 +1728,7 @@ private fun GlassmorphismEmptyGardenCard(onClick: () -> Unit) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
@@ -1996,7 +1996,7 @@ private fun GlassmorphismQuickAccessCard(
                     painter = painterResource(id = iconRes),
                     contentDescription = title,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.FillBounds
                 )
             }
 
@@ -2052,7 +2052,7 @@ private fun GlassmorphismEmptyTaskCard(onClick: () -> Unit) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
@@ -2156,7 +2156,7 @@ private fun GlassmorphismTaskCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Row(
             modifier = Modifier.padding(16.dp),

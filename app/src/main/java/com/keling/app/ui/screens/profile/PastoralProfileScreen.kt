@@ -89,7 +89,7 @@ fun PastoralProfileScreen(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
 
         LazyColumn(
@@ -260,7 +260,7 @@ private fun UserProfileCard(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
         }
         Column(
@@ -408,7 +408,7 @@ private fun StatisticsSection(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
         }
         Column(modifier = Modifier.padding(20.dp)) {
@@ -581,7 +581,7 @@ private fun QuickActionCard(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
         }
         Column(
@@ -635,7 +635,7 @@ private fun AchievementPreview(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
         }
         Column(modifier = Modifier.padding(20.dp)) {

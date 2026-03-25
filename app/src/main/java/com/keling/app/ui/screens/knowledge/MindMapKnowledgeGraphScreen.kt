@@ -263,7 +263,7 @@ fun MindMapKnowledgeGraphScreen(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
             Row(
                 modifier = Modifier
@@ -477,7 +477,7 @@ fun MindMapKnowledgeGraphScreen(
                 painter = painterResource(id = R.drawable.bg_card_theme),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
@@ -551,7 +551,7 @@ private fun MindMapNodeView(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)

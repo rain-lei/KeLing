@@ -90,7 +90,7 @@ fun PastoralNotesScreen(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
 
         LazyColumn(
@@ -237,7 +237,7 @@ private fun AINoteCard(onAskAI: () -> Unit) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Row(
             modifier = Modifier.padding(20.dp),
@@ -339,7 +339,7 @@ private fun NoteCard(
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier.padding(20.dp)
@@ -443,7 +443,7 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
             painter = painterResource(id = R.drawable.bg_card_theme),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
         Column(
             modifier = Modifier
