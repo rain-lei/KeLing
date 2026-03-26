@@ -146,6 +146,10 @@ dependencies {
     // DataStore，用于保存用户偏好设置（比SharedPreferences更现代）
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    // ==================== 后台任务 ====================
+    // WorkManager，用于定时通知和后台任务
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
     // ==================== 网络请求 ====================
     // Ktor客户端，用于调用AI API（比Retrofit更轻量，Kotlin原生）
     implementation("io.ktor:ktor-client-android:2.3.7")
