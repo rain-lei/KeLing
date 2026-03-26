@@ -144,8 +144,8 @@ private fun AchievementsHeader(
         // 返回按钮
         Surface(
             onClick = onBack,
-            shape = RoundedCornerShape(12.dp),
-            color = Color.Transparent,
+            shape = CircleShape,
+            color = BeigeSurface,
             shadowElevation = 0.dp
         ) {
             Box(

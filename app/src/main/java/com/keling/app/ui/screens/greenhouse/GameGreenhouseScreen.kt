@@ -42,6 +42,7 @@ import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
 import kotlinx.coroutines.delay
 import kotlin.random.Random
+import com.keling.app.ui.components.CourseCreationWizard
 
 /**
  * =========================
@@ -105,34 +106,18 @@ fun PastoralGreenhouseScreen(
     val tasks = viewModel.tasks.value
 
     var showCreateDialog by remember { mutableStateOf(false) }
-    var editingCourseId by remember { mutableStateOf<String?>(null) }
-    var dialogCourseName by remember { mutableStateOf("") }
-    var dialogPlanetStyleIndex by remember { mutableStateOf(-1) }
+    var editingCourse by remember { mutableStateOf<Course?>(null) }
 
-    // 弹窗
+    // 使用新的课程创建向导
     if (showCreateDialog) {
-        PastoralPlanetCreationDialog(
-            editingCourseId = editingCourseId,
-            dialogCourseName = dialogCourseName,
-            dialogPlanetStyleIndex = dialogPlanetStyleIndex,
-            onNameChange = { dialogCourseName = it },
-            onStyleChange = { dialogPlanetStyleIndex = it },
-            onConfirm = {
-                val name = dialogCourseName.trim()
-                if (name.isNotEmpty()) {
-                    if (editingCourseId == null) {
-                        viewModel.createCourse(name = name, planetStyleIndex = dialogPlanetStyleIndex)
-                    } else {
-                        viewModel.updateCourse(
-                            courseId = editingCourseId!!,
-                            newName = name,
-                            planetStyleIndex = dialogPlanetStyleIndex
-                        )
-                    }
-                    showCreateDialog = false
-                }
+        CourseCreationWizard(
+            onDismiss = { showCreateDialog = false },
+            onConfirm = { course ->
+                viewModel.addCourse(course)
+                showCreateDialog = false
             },
-            onDismiss = { showCreateDialog = false }
+            editingCourse = editingCourse,
+            existingCourses = courses
         )
     }
 
@@ -158,9 +143,7 @@ fun PastoralGreenhouseScreen(
                 PastoralGreenhouseHeader(
                     onBack = onBack,
                     onAddPlanet = {
-                        editingCourseId = null
-                        dialogCourseName = ""
-                        dialogPlanetStyleIndex = -1
+                        editingCourse = null
                         showCreateDialog = true
                     }
                 )
@@ -180,9 +163,7 @@ fun PastoralGreenhouseScreen(
                 item {
                     EmptyGardenPlanetState(
                         onCreatePlanet = {
-                            editingCourseId = null
-                            dialogCourseName = ""
-                            dialogPlanetStyleIndex = -1
+                            editingCourse = null
                             showCreateDialog = true
                         }
                     )
@@ -197,9 +178,7 @@ fun PastoralGreenhouseScreen(
                         pendingTasks = pendingTasks,
                         onPlanetClick = { viewModel.openCourseGreenhouse(course.id) },
                         onEdit = {
-                            editingCourseId = course.id
-                            dialogCourseName = course.name
-                            dialogPlanetStyleIndex = course.planetStyleIndex
+                            editingCourse = course
                             showCreateDialog = true
                         }
                     )
@@ -232,8 +211,8 @@ private fun PastoralGreenhouseHeader(
         // 返回按钮
         Surface(
             onClick = onBack,
-            shape = RoundedCornerShape(12.dp),
-            color = Color.Transparent,
+            shape = CircleShape,
+            color = BeigeSurface,
             shadowElevation = 0.dp
         ) {
             Box(

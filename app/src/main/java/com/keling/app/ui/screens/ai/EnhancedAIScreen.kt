@@ -343,8 +343,8 @@ private fun GameNPCHeader(
             Box(
                 modifier = Modifier
                     .size(40.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(Color.Transparent)
+                    .clip(CircleShape)
+                    .background(BeigeSurface)
                     .clickable { onBack() },
                 contentAlignment = Alignment.Center
             ) {

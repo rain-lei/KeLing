@@ -1,3 +1,5 @@
+package com.keling.app.data
+
 /**
  * Models.kt
  * 定义应用的所有数据结构
@@ -5,8 +7,6 @@
  *
  * @Serializable用于JSON序列化，方便网络传输和本地存储
  */
-
-package com.keling.app.data
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -16,14 +16,6 @@ import kotlinx.serialization.json.Json
 
 /**
  * 用户数据
- *
- * @property id 用户唯一ID，用设备ID或随机生成
- * @property name 显示名称
- * @property level 等级，影响解锁功能
- * @property energy 能量值（⚡），完成任务获得，用于培育
- * @property crystals 知识结晶（💎），学习深度奖励，用于兑换
- * @property streakDays 连续学习天数
- * @property totalStudyMinutes 总学习时长（分钟）
  */
 @Serializable
 data class User(
@@ -35,24 +27,16 @@ data class User(
     val crystals: Int = 10,
     val streakDays: Int = 0,
     val totalStudyMinutes: Int = 0,
-    val createdAt: Long = System.currentTimeMillis()
+    val createdAt: Long = System.currentTimeMillis(),
+    val streakProtectionCards: Int = 0,
+    val lastCheckInDate: String? = null,
+    val avatarUrl: String? = null,
+    val bio: String = "",
+    val weeklyStudyGoal: Int = 300
 )
 
 // ==================== 课程与知识 ====================
 
-/**
- * 课程（知识星球）
- *
- * @property id 课程ID
- * @property name 课程名称
- * @property code 课程代码，如"MA101"
- * @property teacher 教师姓名
- * @property schedule 上课时间安排
- * @property location 上课地点
- * @property themeColor 星球主题色（存储颜色值）
- * @property masteryLevel 掌握度 0.0~1.0
- * @property plantStage 植物生长阶段 0-5
- */
 @Serializable
 data class Course(
     val id: String,
@@ -61,44 +45,28 @@ data class Course(
     val teacher: String,
     val schedule: List<ScheduleSlot> = emptyList(),
     val location: String = "",
-    val themeColor: Long = 0xFFE8A87C, // 默认恒星橙
+    val themeColor: Long = 0xFFE8A87C,
     val masteryLevel: Float = 0f,
-    val plantStage: Int = 0, // 0=种子,1=萌芽,2=生长,3=开花,4=结果,5=繁茂
-    /**
-     * 星球形象索引：
-     * -1 表示“随机星球”（显示时会根据 course.id 解析出一个稳定的随机形象）
-     * 0..N-1 对应可选的星球图片
-     */
+    val plantStage: Int = 0,
     val planetStyleIndex: Int = -1,
     val lastStudiedAt: Long? = null,
-    val totalStudyMinutes: Int = 0
+    val totalStudyMinutes: Int = 0,
+    val isArchived: Boolean = false,
+    val semester: String? = null,
+    val credit: Int = 0,
+    val examDate: Long? = null,
+    val courseImageUrl: String? = null,
+    val studySessionCount: Int = 0
 )
 
-/**
- * 上课时间段
- */
 @Serializable
 data class ScheduleSlot(
-    val dayOfWeek: Int, // 1=周一, 7=周日
+    val dayOfWeek: Int,
     val startHour: Int,
     val startMinute: Int,
     val durationMinutes: Int
 )
 
-/**
- * 知识点（知识图谱节点）
- *
- * @property id 节点ID
- * @property courseId 所属课程
- * @property name 知识点名称
- * @property description 详细描述
- * @property parentIds 前置知识点（必须先学这些）
- * @property childIds 后续知识点（学完可以学这些）
- * @property difficulty 难度 1-5
- * @property masteryLevel 掌握度 0.0~1.0
- * @property positionX 在图谱中的X坐标（0-1相对位置）
- * @property positionY 在图谱中的Y坐标
- */
 @Serializable
 data class KnowledgeNode(
     val id: String,
@@ -111,26 +79,11 @@ data class KnowledgeNode(
     val masteryLevel: Float = 0f,
     val positionX: Float = 0.5f,
     val positionY: Float = 0.5f,
-    val isUnlocked: Boolean = false // 前置知识满足后才解锁
+    val isUnlocked: Boolean = false
 )
 
 // ==================== 任务系统 ====================
 
-/**
- * 学习任务
- *
- * @property id 任务ID
- * @property title 任务标题
- * @property description 任务描述
- * @property type 任务类型
- * @property courseId 关联课程（可选）
- * @property knowledgeNodeIds 关联知识点
- * @property status 当前状态
- * @property priority 优先级 1-5，5最紧急
- * @property estimatedMinutes 预计用时
- * @property actualMinutes 实际用时（完成后填写）
- * @property rewards 完成奖励
- */
 @Serializable
 data class Task(
     val id: String,
@@ -150,18 +103,18 @@ data class Task(
 )
 
 enum class TaskType {
-    DAILY_CARE,      // 日常培育：短时长，维持知识
-    DEEP_EXPLORATION, // 深度探索：长时长，突破难点
-    REVIEW_RITUAL,   // 复习仪式：基于遗忘曲线
-    BOUNTY,          // 赏金任务：校园活动
-    RESCUE           // 星际救援：帮助同学
+    DAILY_CARE,
+    DEEP_EXPLORATION,
+    REVIEW_RITUAL,
+    BOUNTY,
+    RESCUE
 }
 
 enum class TaskStatus {
-    PENDING,     // 待完成
-    IN_PROGRESS, // 进行中
-    COMPLETED,   // 已完成
-    ABANDONED    // 已放弃
+    PENDING,
+    IN_PROGRESS,
+    COMPLETED,
+    ABANDONED
 }
 
 @Serializable
@@ -173,17 +126,6 @@ data class Rewards(
 
 // ==================== 笔记与AI ====================
 
-/**
- * 知识笔记（由AI生成或用户创建）
- *
- * @property id 笔记ID
- * @property title 笔记标题
- * @property content 笔记内容（支持Markdown）
- * @property sourceType 来源类型
- * @property aiExplanation 如果是AI生成，原始解释
- * @property relatedNodeIds 关联的知识点
- * @property tags 标签，用于检索
- */
 @Serializable
 data class Note(
     val id: String,
@@ -195,61 +137,19 @@ data class Note(
     val tags: List<String> = emptyList(),
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
-    val reviewCount: Int = 0, // 复习次数
+    val reviewCount: Int = 0,
     val lastReviewedAt: Long? = null
 )
 
 enum class NoteSource {
-    AI_GENERATED,  // AI生成
-    USER_CREATED,  // 用户手动创建
-    CLASS_CAPTURE, // 课堂拍照/录音
-    BOUNTY_REWARD  // 赏金奖励
-}
-
-// ==================== 赏金系统 ====================
-
-/**
- * 赏金任务（校园活动）
- */
-@Serializable
-data class Bounty(
-    val id: String,
-    val title: String,
-    val description: String,
-    val type: BountyType,
-    val difficulty: Int, // 1-5
-    val rewards: Rewards,
-    val deadline: Long? = null,
-    val participantCount: Int = 0,
-    val maxParticipants: Int? = null,
-    val isTeamTask: Boolean = false,
-    val tags: List<String> = emptyList()
-)
-
-enum class BountyType {
-    ACADEMIC,    // 学术探索：讲座、论文
-    SKILL,       // 技能试炼：编程、设计
-    SOCIAL,      // 社交协作：组队、互助
-    EVENT,       // 校园事件：比赛、志愿
-    RESCUE       // 星际救援：紧急求助
+    AI_GENERATED,
+    USER_CREATED,
+    CLASS_CAPTURE,
+    BOUNTY_REWARD
 }
 
 // ==================== 成就系统 ====================
 
-/**
- * 成就定义
- *
- * @property id 成就ID
- * @property name 成就名称
- * @property description 成就描述
- * @property icon 成就图标
- * @property category 成就类别
- * @property requirement 达成条件描述
- * @property rewardEnergy 能量奖励
- * @property rewardCrystals 结晶奖励
- * @property isUnlocked 是否已解锁
- * @property unlockedAt 解锁时间
- */
 @Serializable
 data class Achievement(
     val id: String,
@@ -267,22 +167,15 @@ data class Achievement(
 )
 
 enum class AchievementCategory {
-    LEARNING,    // 学习成就：完成课程、任务等
-    STREAK,      // 坚持成就：连续签到、学习天数
-    EXPLORATION, // 探索成就：解锁知识、发现新内容
-    SOCIAL,      // 社交成就：帮助他人、组队学习
-    MASTERY      // 精通成就：完全掌握课程知识
+    LEARNING,
+    STREAK,
+    EXPLORATION,
+    SOCIAL,
+    MASTERY
 }
 
 // ==================== 签到系统 ====================
 
-/**
- * 签到记录
- *
- * @property date 签到日期（格式：yyyyMMdd）
- * @property userId 用户ID
- * @property rewardReceived 已领取的奖励
- */
 @Serializable
 data class CheckInRecord(
     val date: String,
@@ -291,34 +184,240 @@ data class CheckInRecord(
     val createdAt: Long = System.currentTimeMillis()
 )
 
-/**
- * 签到奖励配置
- */
+// ==================== 学习记录 ====================
+
 @Serializable
-data class CheckInReward(
-    val day: Int,           // 第几天
-    val energy: Int,        // 能量奖励
-    val crystals: Int,      // 结晶奖励
-    val isSpecial: Boolean = false, // 是否为特殊奖励日
-    val specialReward: String? = null // 特殊奖励描述
+data class StudyRecord(
+    val id: String,
+    val userId: String,
+    val courseId: String? = null,
+    val taskId: String? = null,
+    val type: StudyType,
+    val durationMinutes: Int,
+    val createdAt: Long = System.currentTimeMillis(),
+    val notes: String = ""
+)
+
+enum class StudyType {
+    TASK_COMPLETION,
+    COURSE_STUDY,
+    REVIEW_SESSION,
+    PRACTICE,
+    AI_INTERACTION
+}
+
+// ==================== 任务模板 ====================
+
+@Serializable
+data class TaskTemplate(
+    val id: String,
+    val name: String,
+    val description: String,
+    val defaultDuration: Int,
+    val defaultType: TaskType,
+    val defaultPriority: Int = 3,
+    val icon: String = "📋",
+    val category: String = "general"
+)
+
+val TASK_TEMPLATES = listOf(
+    TaskTemplate(
+        id = "exam_prep",
+        name = "考前冲刺",
+        description = "考试前集中复习，重点突破",
+        defaultDuration = 60,
+        defaultType = TaskType.DEEP_EXPLORATION,
+        defaultPriority = 5,
+        icon = "🎯",
+        category = "exam"
+    ),
+    TaskTemplate(
+        id = "daily_review",
+        name = "日常复习",
+        description = "每日知识巩固，保持记忆",
+        defaultDuration = 25,
+        defaultType = TaskType.DAILY_CARE,
+        defaultPriority = 3,
+        icon = "🌱",
+        category = "review"
+    ),
+    TaskTemplate(
+        id = "quick_practice",
+        name = "快速练习",
+        description = "短时间高效刷题",
+        defaultDuration = 15,
+        defaultType = TaskType.DAILY_CARE,
+        defaultPriority = 2,
+        icon = "⚡",
+        category = "practice"
+    ),
+    TaskTemplate(
+        id = "deep_study",
+        name = "深度学习",
+        description = "深入理解概念，攻克难点",
+        defaultDuration = 45,
+        defaultType = TaskType.DEEP_EXPLORATION,
+        defaultPriority = 4,
+        icon = "🔬",
+        category = "general"
+    ),
+    TaskTemplate(
+        id = "spaced_review",
+        name = "间隔复习",
+        description = "基于遗忘曲线的科学复习",
+        defaultDuration = 20,
+        defaultType = TaskType.REVIEW_RITUAL,
+        defaultPriority = 3,
+        icon = "🔄",
+        category = "review"
+    ),
+    TaskTemplate(
+        id = "homework",
+        name = "作业任务",
+        description = "完成课后作业",
+        defaultDuration = 40,
+        defaultType = TaskType.DAILY_CARE,
+        defaultPriority = 4,
+        icon = "📝",
+        category = "general"
+    )
+)
+
+// ==================== 挑战系统 ====================
+
+@Serializable
+data class Challenge(
+    val id: String,
+    val title: String,
+    val description: String,
+    val type: ChallengeType,
+    val target: Int,
+    val progress: Int = 0,
+    val startDate: Long,
+    val endDate: Long,
+    val rewards: Rewards,
+    val isCompleted: Boolean = false,
+    val completedAt: Long? = null
+)
+
+enum class ChallengeType {
+    DAILY_STUDY,
+    TASK_COMPLETION,
+    STREAK_DAYS,
+    COURSE_MASTERY,
+    NOTE_CREATION,
+    KNOWLEDGE_UNLOCK
+}
+
+// ==================== 学习会话 ====================
+
+@Serializable
+data class StudySession(
+    val id: String,
+    val userId: String,
+    val courseId: String?,
+    val taskId: String?,
+    val startTime: Long,
+    val endTime: Long? = null,
+    val durationMinutes: Int = 0,
+    val type: StudyType,
+    val notes: String = "",
+    val focusScore: Float? = null,
+    val distractions: Int = 0,
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+// ==================== 任务推荐 ====================
+
+@Serializable
+data class TaskRecommendation(
+    val id: String,
+    val title: String,
+    val description: String,
+    val courseId: String?,
+    val type: TaskType,
+    val estimatedMinutes: Int,
+    val priority: Int,
+    val reason: String,
+    val relevanceScore: Float,
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+// ==================== 番茄钟设置 ====================
+
+@Serializable
+data class PomodoroSettings(
+    val focusMinutes: Int = 25,
+    val shortBreakMinutes: Int = 5,
+    val longBreakMinutes: Int = 15,
+    val sessionsBeforeLongBreak: Int = 4,
+    val autoStartBreak: Boolean = true,
+    val autoStartNextSession: Boolean = false,
+    val soundEnabled: Boolean = true,
+    val vibrationEnabled: Boolean = true
+)
+
+// ==================== 学习偏好 ====================
+
+@Serializable
+data class StudyPreferences(
+    val preferredStudyHours: List<Int> = listOf(9, 10, 14, 15, 20, 21),
+    val dailyGoalMinutes: Int = 60,
+    val weeklyGoalMinutes: Int = 300,
+    val reminderEnabled: Boolean = true,
+    val reminderMinutesBefore: Int = 15,
+    val restReminderEnabled: Boolean = true,
+    val maxContinuousStudyMinutes: Int = 90
+)
+
+// ==================== 笔记附件 ====================
+
+@Serializable
+data class NoteAttachment(
+    val id: String,
+    val noteId: String,
+    val type: AttachmentType,
+    val uri: String,
+    val thumbnailUri: String? = null,
+    val fileName: String = "",
+    val fileSize: Long = 0,
+    val duration: Int? = null,
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+enum class AttachmentType {
+    IMAGE,
+    AUDIO,
+    VIDEO,
+    FILE,
+    LINK
+}
+
+// ==================== 学习路径 ====================
+
+@Serializable
+data class LearningPath(
+    val id: String,
+    val courseId: String,
+    val title: String,
+    val description: String,
+    val nodes: List<LearningPathNode>,
+    val totalEstimatedMinutes: Int,
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+@Serializable
+data class LearningPathNode(
+    val nodeId: String,
+    val nodeName: String,
+    val order: Int,
+    val isCompleted: Boolean = false,
+    val estimatedMinutes: Int = 30,
+    val prerequisites: List<String> = emptyList()
 )
 
 // ==================== 学习报告 ====================
 
-/**
- * 学习报告
- *
- * @property id 报告ID
- * @property userId 用户ID
- * @property startDate 统计开始时间
- * @property endDate 统计结束时间
- * @property totalStudyMinutes 学习总时长
- * @property completedTasks 完成任务数
- * @property coursesStudied 学习课程数
- * @property averageMastery 平均掌握度提升
- * @property aiInsight AI洞察分析
- * @property createdAt 创建时间
- */
 @Serializable
 data class StudyReport(
     val id: String,
@@ -337,80 +436,30 @@ data class StudyReport(
     val createdAt: Long = System.currentTimeMillis()
 )
 
-// ==================== 学习记录 ====================
+// ==================== 签到奖励 ====================
 
-/**
- * 学习记录条目
- *
- * @property id 记录ID
- * @property userId 用户ID
- * @property courseId 关联课程ID
- * @property taskId 关联任务ID（可选）
- * @property type 学习类型
- * @property durationMinutes 学习时长
- * @property createdAt 创建时间
- * @property notes 备注
- */
 @Serializable
-data class StudyRecord(
-    val id: String,
-    val userId: String,
-    val courseId: String? = null,
-    val taskId: String? = null,
-    val type: StudyType,
-    val durationMinutes: Int,
-    val createdAt: Long = System.currentTimeMillis(),
-    val notes: String = ""
+data class CheckInReward(
+    val day: Int,
+    val energy: Int,
+    val crystals: Int,
+    val isSpecial: Boolean = false,
+    val specialReward: String? = null
 )
 
-enum class StudyType {
-    TASK_COMPLETION,  // 完成任务
-    COURSE_STUDY,     // 课程学习
-    REVIEW_SESSION,   // 复习回顾
-    PRACTICE,         // 练习刷题
-    AI_INTERACTION    // AI交互学习
-}
+val CHECK_IN_REWARDS = listOf(
+    CheckInReward(day = 1, energy = 10, crystals = 5),
+    CheckInReward(day = 2, energy = 15, crystals = 8),
+    CheckInReward(day = 3, energy = 20, crystals = 10),
+    CheckInReward(day = 4, energy = 25, crystals = 12),
+    CheckInReward(day = 5, energy = 30, crystals = 15),
+    CheckInReward(day = 6, energy = 40, crystals = 20),
+    CheckInReward(day = 7, energy = 50, crystals = 30, isSpecial = true, specialReward = "周奖励已解锁！")
+)
 
-// ==================== 工具函数 ====================
+// ==================== 预定义成就 ====================
 
-/**
- * JSON序列化配置
- * ignoreUnknownKeys = true 遇到未知字段不报错（向后兼容）
- * prettyPrint = true 格式化输出，方便调试
- */
-val json = Json {
-    ignoreUnknownKeys = true
-    prettyPrint = true
-}
-
-/**
- * 扩展函数：将对象转为JSON字符串
- */
-inline fun <reified T> T.toJson(): String = json.encodeToString(this)
-
-/**
- * 扩展函数：将JSON字符串转为对象
- */
-inline fun <reified T> String.fromJson(): T = json.decodeFromString(this)
-
-/**
- * 获取今日日期字符串（yyyyMMdd格式）
- */
-fun getTodayDateString(): String {
-    val cal = java.util.Calendar.getInstance()
-    return String.format(
-        "%04d%02d%02d",
-        cal.get(java.util.Calendar.YEAR),
-        cal.get(java.util.Calendar.MONTH) + 1,
-        cal.get(java.util.Calendar.DAY_OF_MONTH)
-    )
-}
-
-/**
- * 预定义成就列表
- */
 val PREDEFINED_ACHIEVEMENTS = listOf(
-    // 学习成就
     Achievement(
         id = "first_task",
         name = "初学者",
@@ -461,7 +510,6 @@ val PREDEFINED_ACHIEVEMENTS = listOf(
         rewardCrystals = 50,
         maxProgress = 1
     ),
-    // 坚持成就
     Achievement(
         id = "streak_3",
         name = "坚持三天",
@@ -494,7 +542,6 @@ val PREDEFINED_ACHIEVEMENTS = listOf(
         rewardCrystals = 200,
         maxProgress = 30
     ),
-    // 探索成就
     Achievement(
         id = "knowledge_10",
         name = "知识收集者",
@@ -517,15 +564,67 @@ val PREDEFINED_ACHIEVEMENTS = listOf(
     )
 )
 
-/**
- * 签到奖励配置
- */
-val CHECK_IN_REWARDS = listOf(
-    CheckInReward(day = 1, energy = 10, crystals = 5),
-    CheckInReward(day = 2, energy = 15, crystals = 8),
-    CheckInReward(day = 3, energy = 20, crystals = 10),
-    CheckInReward(day = 4, energy = 25, crystals = 12),
-    CheckInReward(day = 5, energy = 30, crystals = 15),
-    CheckInReward(day = 6, energy = 40, crystals = 20),
-    CheckInReward(day = 7, energy = 50, crystals = 30, isSpecial = true, specialReward = "周奖励已解锁！")
-)
+// ==================== 工具函数 ====================
+
+val json = Json {
+    ignoreUnknownKeys = true
+    prettyPrint = true
+}
+
+inline fun <reified T> T.toJson(): String = json.encodeToString(this)
+inline fun <reified T> String.fromJson(): T = json.decodeFromString(this)
+
+fun getTodayDateString(): String {
+    val cal = java.util.Calendar.getInstance()
+    return String.format(
+        "%04d%02d%02d",
+        cal.get(java.util.Calendar.YEAR),
+        cal.get(java.util.Calendar.MONTH) + 1,
+        cal.get(java.util.Calendar.DAY_OF_MONTH)
+    )
+}
+
+fun generateWeeklyChallenges(): List<Challenge> {
+    val now = System.currentTimeMillis()
+    val cal = java.util.Calendar.getInstance()
+    cal.timeInMillis = now
+    cal.set(java.util.Calendar.DAY_OF_WEEK, java.util.Calendar.MONDAY)
+    cal.set(java.util.Calendar.HOUR_OF_DAY, 0)
+    cal.set(java.util.Calendar.MINUTE, 0)
+    cal.set(java.util.Calendar.SECOND, 0)
+    val weekStart = cal.timeInMillis
+    val weekEnd = weekStart + 7 * 24 * 60 * 60 * 1000
+
+    return listOf(
+        Challenge(
+            id = "weekly_study_${java.text.SimpleDateFormat("yyyyMMdd").format(weekStart)}",
+            title = "周学习达人",
+            description = "本周累计学习300分钟",
+            type = ChallengeType.DAILY_STUDY,
+            target = 300,
+            startDate = weekStart,
+            endDate = weekEnd,
+            rewards = Rewards(energy = 100, crystals = 50, exp = 150)
+        ),
+        Challenge(
+            id = "weekly_tasks_${java.text.SimpleDateFormat("yyyyMMdd").format(weekStart)}",
+            title = "任务收割机",
+            description = "本周完成10个任务",
+            type = ChallengeType.TASK_COMPLETION,
+            target = 10,
+            startDate = weekStart,
+            endDate = weekEnd,
+            rewards = Rewards(energy = 80, crystals = 40, exp = 120)
+        ),
+        Challenge(
+            id = "weekly_notes_${java.text.SimpleDateFormat("yyyyMMdd").format(weekStart)}",
+            title = "笔记狂人",
+            description = "本周创建3篇笔记",
+            type = ChallengeType.NOTE_CREATION,
+            target = 3,
+            startDate = weekStart,
+            endDate = weekEnd,
+            rewards = Rewards(energy = 60, crystals = 30, exp = 80)
+        )
+    )
+}

@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.keling.app.R
 import com.keling.app.data.KnowledgeNode
+import com.keling.app.ui.components.KnowledgeNodeEditDialog
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
 import kotlin.math.max
@@ -220,6 +221,10 @@ fun MindMapKnowledgeGraphScreen(
     var scale by remember { mutableStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
 
+    // 节点编辑对话框状态
+    var showEditDialog by remember { mutableStateOf(false) }
+    var editingNode by remember { mutableStateOf<KnowledgeNode?>(null) }
+
     // 计算内容边界，用于初始居中
     val density = LocalDensity.current
     val contentBounds = remember(allPositions) {
@@ -275,8 +280,8 @@ fun MindMapKnowledgeGraphScreen(
                 // 返回按钮
                 Surface(
                     onClick = onBack,
-                    shape = RoundedCornerShape(12.dp),
-                    color = Color.Transparent
+                    shape = CircleShape,
+                    color = BeigeSurface
                 ) {
                     Box(
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -461,6 +466,10 @@ fun MindMapKnowledgeGraphScreen(
                         MindMapNodeView(
                             node = pos.node,
                             level = pos.level,
+                            onClick = {
+                                editingNode = pos.node
+                                showEditDialog = true
+                            },
                             modifier = Modifier.absoluteOffset(
                                 x = with(density) { pos.x.toDp() },
                                 y = with(density) { pos.y.toDp() }
@@ -516,6 +525,56 @@ fun MindMapKnowledgeGraphScreen(
                 }
             }
         }
+
+        // 添加知识点按钮
+        if (effectiveCourseId != null) {
+            Surface(
+                onClick = {
+                    editingNode = null
+                    showEditDialog = true
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(start = 16.dp, bottom = 16.dp),
+                shape = RoundedCornerShape(16.dp),
+                color = WarmSunOrange,
+                shadowElevation = 4.dp
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = "✨", fontSize = 16.sp, color = Color.White)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "添加知识点",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+    }
+
+    // 节点编辑对话框
+    if (showEditDialog && effectiveCourseId != null) {
+        KnowledgeNodeEditDialog(
+            node = editingNode,
+            courseId = effectiveCourseId,
+            availableParents = nodes.filter { it.id != editingNode?.id },
+            onDismiss = { showEditDialog = false },
+            onSave = { node ->
+                viewModel.upsertKnowledgeNode(node)
+                showEditDialog = false
+            },
+            onDelete = if (editingNode != null) {
+                {
+                    viewModel.deleteKnowledgeNodeByCourseAndName(effectiveCourseId, editingNode!!.name)
+                    showEditDialog = false
+                }
+            } else null
+        )
     }
 }
 
@@ -525,6 +584,7 @@ fun MindMapKnowledgeGraphScreen(
 private fun MindMapNodeView(
     node: KnowledgeNode,
     level: Int,
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val color = getLevelColor(level)
@@ -542,6 +602,7 @@ private fun MindMapNodeView(
     )
 
     Surface(
+        onClick = onClick,
         modifier = modifier
             .widthIn(min = 140.dp, max = 180.dp)
             .drawBehind {

@@ -236,6 +236,27 @@ class AppViewModel : ViewModel() {
     }
 
     /**
+     * 添加新任务
+     */
+    fun addTask(task: Task) {
+        _tasks.value = _tasks.value + task
+    }
+
+    /**
+     * 更新任务
+     */
+    fun updateTask(task: Task) {
+        _tasks.value = _tasks.value.map { if (it.id == task.id) task else it }
+    }
+
+    /**
+     * 删除任务
+     */
+    fun deleteTask(taskId: String) {
+        _tasks.value = _tasks.value.filter { it.id != taskId }
+    }
+
+    /**
      * 供导航 / AI 工具使用的统一导航入口。
      */
     fun navigateTo(screen: String) {
@@ -1000,6 +1021,460 @@ class AppViewModel : ViewModel() {
             totalNotes = _notes.value.size,
             unlockedAchievements = getUnlockedAchievementCount(),
             streakDays = _currentUser.value.streakDays
+        )
+    }
+
+    // ==================== 课程归档 ====================
+
+    private val _archivedCourses = mutableStateOf<List<Course>>(emptyList())
+    val archivedCourses: State<List<Course>> = _archivedCourses
+
+    /**
+     * 归档课程
+     */
+    fun archiveCourse(courseId: String) {
+        val course = _courses.value.find { it.id == courseId } ?: return
+        _courses.value = _courses.value.filter { it.id != courseId }
+        _archivedCourses.value = _archivedCourses.value + course.copy(isArchived = true)
+    }
+
+    /**
+     * 取消归档课程
+     */
+    fun unarchiveCourse(courseId: String) {
+        val course = _archivedCourses.value.find { it.id == courseId } ?: return
+        _archivedCourses.value = _archivedCourses.value.filter { it.id != courseId }
+        _courses.value = _courses.value + course.copy(isArchived = false)
+    }
+
+    /**
+     * 删除课程（永久）
+     */
+    fun deleteCoursePermanently(courseId: String) {
+        _courses.value = _courses.value.filter { it.id != courseId }
+        _archivedCourses.value = _archivedCourses.value.filter { it.id != courseId }
+        // 同时删除相关数据
+        _tasks.value = _tasks.value.filter { it.courseId != courseId }
+        _knowledgeNodes.value = _knowledgeNodes.value.filter { it.courseId != courseId }
+    }
+
+    // ==================== 挑战系统 ====================
+
+    private val _activeChallenges = mutableStateOf<List<Challenge>>(emptyList())
+    val activeChallenges: State<List<Challenge>> = _activeChallenges
+
+    /**
+     * 初始化本周挑战
+     */
+    fun initWeeklyChallenges() {
+        val weeklyChallenges = generateWeeklyChallenges()
+        _activeChallenges.value = weeklyChallenges
+    }
+
+    /**
+     * 更新挑战进度
+     */
+    fun updateChallengeProgress(type: ChallengeType, increment: Int = 1) {
+        _activeChallenges.value = _activeChallenges.value.map { challenge ->
+            if (challenge.type == type && !challenge.isCompleted) {
+                val newProgress = (challenge.progress + increment).coerceAtMost(challenge.target)
+                val isCompleted = newProgress >= challenge.target
+                challenge.copy(
+                    progress = newProgress,
+                    isCompleted = isCompleted,
+                    completedAt = if (isCompleted) System.currentTimeMillis() else null
+                )
+            } else {
+                challenge
+            }
+        }
+
+        // 发放已完成挑战的奖励
+        _activeChallenges.value.filter { it.isCompleted && it.completedAt != null }.forEach { challenge ->
+            if (challenge.progress >= challenge.target) {
+                _currentUser.value = _currentUser.value.copy(
+                    energy = _currentUser.value.energy + challenge.rewards.energy,
+                    crystals = _currentUser.value.crystals + challenge.rewards.crystals,
+                    exp = _currentUser.value.exp + challenge.rewards.exp
+                )
+            }
+        }
+    }
+
+    // ==================== 任务推荐 ====================
+
+    private val _taskRecommendations = mutableStateOf<List<TaskRecommendation>>(emptyList())
+    val taskRecommendations: State<List<TaskRecommendation>> = _taskRecommendations
+
+    /**
+     * 生成任务推荐
+     */
+    fun generateTaskRecommendations() {
+        val recommendations = mutableListOf<TaskRecommendation>()
+        val now = System.currentTimeMillis()
+        val cal = Calendar.getInstance()
+
+        // 1. 基于遗忘曲线的推荐
+        _courses.value.forEach { course ->
+            val daysSinceLastStudy = if (course.lastStudiedAt != null) {
+                ((now - course.lastStudiedAt) / (1000 * 60 * 60 * 24)).toInt()
+            } else {
+                7 // 从未学习
+            }
+
+            if (daysSinceLastStudy >= 2) {
+                recommendations.add(
+                    TaskRecommendation(
+                        id = "rec_forget_${course.id}",
+                        title = "${course.name}·复习提醒",
+                        description = "距离上次学习已${daysSinceLastStudy}天，该复习啦！",
+                        courseId = course.id,
+                        type = TaskType.REVIEW_RITUAL,
+                        estimatedMinutes = 20,
+                        priority = if (daysSinceLastStudy >= 5) 5 else 3,
+                        reason = "根据遗忘曲线，现在是最佳复习时机",
+                        relevanceScore = 0.9f - (daysSinceLastStudy * 0.1f)
+                    )
+                )
+            }
+        }
+
+        // 2. 基于掌握度的推荐
+        _courses.value.filter { it.masteryLevel < 0.5f }.forEach { course ->
+            recommendations.add(
+                TaskRecommendation(
+                    id = "rec_mastery_${course.id}",
+                    title = "${course.name}·加强训练",
+                    description = "当前掌握度${(course.masteryLevel * 100).toInt()}%，需要重点学习",
+                    courseId = course.id,
+                    type = TaskType.DEEP_EXPLORATION,
+                    estimatedMinutes = 30,
+                    priority = 4,
+                    reason = "掌握度较低，建议重点突破",
+                    relevanceScore = 0.8f
+                )
+            )
+        }
+
+        // 3. 基于课表的推荐
+        val todaySchedule = getTodaySchedule(cal.get(Calendar.DAY_OF_WEEK))
+        todaySchedule.forEach { (course, slot) ->
+            val classTime = cal.apply {
+                set(Calendar.HOUR_OF_DAY, slot.startHour)
+                set(Calendar.MINUTE, slot.startMinute)
+            }.timeInMillis
+            val hoursBeforeClass = (classTime - now) / (1000 * 60 * 60)
+
+            if (hoursBeforeClass in 1..4) {
+                recommendations.add(
+                    TaskRecommendation(
+                        id = "rec_class_${course.id}",
+                        title = "${course.name}·课前预习",
+                        description = "还有${hoursBeforeClass}小时上课，快速预习一下",
+                        courseId = course.id,
+                        type = TaskType.DAILY_CARE,
+                        estimatedMinutes = 15,
+                        priority = 5,
+                        reason = "即将上课，预习效果更好",
+                        relevanceScore = 0.95f
+                    )
+                )
+            }
+        }
+
+        // 4. 基于考试日期的推荐
+        _courses.value.filter { it.examDate != null }.forEach { course ->
+            val daysUntilExam = ((course.examDate!! - now) / (1000 * 60 * 60 * 24)).toInt()
+            if (daysUntilExam in 1..14) {
+                recommendations.add(
+                    TaskRecommendation(
+                        id = "rec_exam_${course.id}",
+                        title = "${course.name}·考前冲刺",
+                        description = "距离考试还有${daysUntilExam}天",
+                        courseId = course.id,
+                        type = TaskType.DEEP_EXPLORATION,
+                        estimatedMinutes = 45,
+                        priority = 5,
+                        reason = "考试临近，建议集中复习",
+                        relevanceScore = 0.98f
+                    )
+                )
+            }
+        }
+
+        // 按相关度排序
+        _taskRecommendations.value = recommendations.sortedByDescending { it.relevanceScore }
+    }
+
+    /**
+     * 从推荐创建任务
+     */
+    fun createTaskFromRecommendation(recommendation: TaskRecommendation): Task {
+        val task = Task(
+            id = "task_${System.currentTimeMillis()}",
+            title = recommendation.title,
+            description = recommendation.description,
+            type = recommendation.type,
+            courseId = recommendation.courseId,
+            priority = recommendation.priority,
+            estimatedMinutes = recommendation.estimatedMinutes,
+            rewards = Rewards(
+                energy = recommendation.estimatedMinutes,
+                crystals = recommendation.estimatedMinutes / 2,
+                exp = recommendation.estimatedMinutes * 2
+            )
+        )
+        _tasks.value = _tasks.value + task
+        return task
+    }
+
+    // ==================== 学习会话 ====================
+
+    private val _currentStudySession = mutableStateOf<StudySession?>(null)
+    val currentStudySession: State<StudySession?> = _currentStudySession
+
+    private val _studySessions = mutableStateOf<List<StudySession>>(emptyList())
+    val studySessions: State<List<StudySession>> = _studySessions
+
+    /**
+     * 开始学习会话
+     */
+    fun startStudySession(courseId: String?, taskId: String?, type: StudyType) {
+        _currentStudySession.value = StudySession(
+            id = "session_${System.currentTimeMillis()}",
+            userId = _currentUser.value.id,
+            courseId = courseId,
+            taskId = taskId,
+            startTime = System.currentTimeMillis(),
+            type = type
+        )
+    }
+
+    /**
+     * 结束学习会话
+     */
+    fun endStudySession(notes: String = "") {
+        val session = _currentStudySession.value ?: return
+        val endTime = System.currentTimeMillis()
+        val durationMinutes = ((endTime - session.startTime) / 60000).toInt()
+
+        val completedSession = session.copy(
+            endTime = endTime,
+            durationMinutes = durationMinutes,
+            notes = notes
+        )
+
+        _studySessions.value = _studySessions.value + completedSession
+        _currentStudySession.value = null
+
+        // 更新课程学习时间
+        if (session.courseId != null) {
+            _courses.value = _courses.value.map { course ->
+                if (course.id == session.courseId) {
+                    course.copy(
+                        totalStudyMinutes = course.totalStudyMinutes + durationMinutes,
+                        lastStudiedAt = endTime,
+                        studySessionCount = course.studySessionCount + 1
+                    )
+                } else course
+            }
+        }
+
+        // 更新用户总学习时间
+        _currentUser.value = _currentUser.value.copy(
+            totalStudyMinutes = _currentUser.value.totalStudyMinutes + durationMinutes
+        )
+
+        // 更新挑战进度
+        updateChallengeProgress(ChallengeType.DAILY_STUDY, durationMinutes)
+
+        // 添加学习记录
+        addStudyRecord(session.courseId, session.taskId, session.type, durationMinutes, notes)
+    }
+
+    // ==================== 番茄钟 ====================
+
+    private val _pomodoroSettings = mutableStateOf(PomodoroSettings())
+    val pomodoroSettings: State<PomodoroSettings> = _pomodoroSettings
+
+    private val _pomodoroTimeLeft = mutableStateOf(25 * 60) // 秒
+    val pomodoroTimeLeft: State<Int> = _pomodoroTimeLeft
+
+    private val _pomodoroSessionCount = mutableStateOf(0)
+    val pomodoroSessionCount: State<Int> = _pomodoroSessionCount
+
+    private val _isPomodoroRunning = mutableStateOf(false)
+    val isPomodoroRunning: State<Boolean> = _isPomodoroRunning
+
+    private val _isPomodoroBreak = mutableStateOf(false)
+    val isPomodoroBreak: State<Boolean> = _isPomodoroBreak
+
+    /**
+     * 更新番茄钟设置
+     */
+    fun updatePomodoroSettings(settings: PomodoroSettings) {
+        _pomodoroSettings.value = settings
+        if (!_isPomodoroRunning.value) {
+            _pomodoroTimeLeft.value = settings.focusMinutes * 60
+        }
+    }
+
+    /**
+     * 开始番茄钟
+     */
+    fun startPomodoro() {
+        _isPomodoroRunning.value = true
+        if (!_isPomodoroBreak.value) {
+            _pomodoroTimeLeft.value = _pomodoroSettings.value.focusMinutes * 60
+        }
+    }
+
+    /**
+     * 暂停番茄钟
+     */
+    fun pausePomodoro() {
+        _isPomodoroRunning.value = false
+    }
+
+    /**
+     * 重置番茄钟
+     */
+    fun resetPomodoro() {
+        _isPomodoroRunning.value = false
+        _isPomodoroBreak.value = false
+        _pomodoroTimeLeft.value = _pomodoroSettings.value.focusMinutes * 60
+    }
+
+    /**
+     * 番茄钟计时（每秒调用）
+     */
+    fun tickPomodoro() {
+        if (!_isPomodoroRunning.value) return
+
+        if (_pomodoroTimeLeft.value > 0) {
+            _pomodoroTimeLeft.value -= 1
+        } else {
+            // 时间到
+            if (_isPomodoroBreak.value) {
+                // 休息结束，开始新的专注
+                _isPomodoroBreak.value = false
+                _pomodoroTimeLeft.value = _pomodoroSettings.value.focusMinutes * 60
+            } else {
+                // 专注结束
+                _pomodoroSessionCount.value += 1
+
+                // 检查是否需要长休息
+                if (_pomodoroSessionCount.value % _pomodoroSettings.value.sessionsBeforeLongBreak == 0) {
+                    _pomodoroTimeLeft.value = _pomodoroSettings.value.longBreakMinutes * 60
+                } else {
+                    _pomodoroTimeLeft.value = _pomodoroSettings.value.shortBreakMinutes * 60
+                }
+                _isPomodoroBreak.value = true
+            }
+        }
+    }
+
+    // ==================== 笔记附件 ====================
+
+    private val _noteAttachments = mutableStateOf<Map<String, List<NoteAttachment>>>(emptyMap())
+    val noteAttachments: State<Map<String, List<NoteAttachment>>> = _noteAttachments
+
+    /**
+     * 添加笔记附件
+     */
+    fun addNoteAttachment(noteId: String, attachment: NoteAttachment) {
+        val currentList = _noteAttachments.value[noteId] ?: emptyList()
+        _noteAttachments.value = _noteAttachments.value + (noteId to currentList + attachment)
+    }
+
+    /**
+     * 删除笔记附件
+     */
+    fun removeNoteAttachment(noteId: String, attachmentId: String) {
+        val currentList = _noteAttachments.value[noteId] ?: return
+        _noteAttachments.value = _noteAttachments.value + (noteId to currentList.filter { it.id != attachmentId })
+    }
+
+    /**
+     * 获取笔记附件列表
+     */
+    fun getNoteAttachments(noteId: String): List<NoteAttachment> {
+        return _noteAttachments.value[noteId] ?: emptyList()
+    }
+
+    // ==================== 断签保护 ====================
+
+    /**
+     * 使用断签保护卡
+     */
+    fun useStreakProtectionCard(): Boolean {
+        if (_currentUser.value.streakProtectionCards <= 0) return false
+
+        _currentUser.value = _currentUser.value.copy(
+            streakProtectionCards = _currentUser.value.streakProtectionCards - 1
+        )
+        return true
+    }
+
+    /**
+     * 获得断签保护卡
+     */
+    fun earnStreakProtectionCard(count: Int = 1) {
+        _currentUser.value = _currentUser.value.copy(
+            streakProtectionCards = _currentUser.value.streakProtectionCards + count
+        )
+    }
+
+    // ==================== 学习路径 ====================
+
+    /**
+     * 生成学习路径
+     */
+    fun generateLearningPath(courseId: String, targetNodeName: String): LearningPath? {
+        val course = _courses.value.find { it.id == courseId } ?: return null
+        val nodes = _knowledgeNodes.value.filter { it.courseId == courseId }
+        val targetNode = nodes.find { it.name == targetNodeName } ?: return null
+
+        // 递归获取所有前置节点
+        val pathNodes = mutableListOf<LearningPathNode>()
+        val visited = mutableSetOf<String>()
+
+        fun collectPrerequisites(node: KnowledgeNode, order: Int): Int {
+            if (node.id in visited) return order
+            visited.add(node.id)
+
+            var currentOrder = order
+            for (parentId in node.parentIds) {
+                val parent = nodes.find { it.id == parentId }
+                if (parent != null && parent.id !in visited) {
+                    currentOrder = collectPrerequisites(parent, currentOrder)
+                }
+            }
+
+            pathNodes.add(
+                LearningPathNode(
+                    nodeId = node.id,
+                    nodeName = node.name,
+                    order = currentOrder,
+                    isCompleted = node.masteryLevel >= 0.8f,
+                    estimatedMinutes = node.difficulty * 15
+                )
+            )
+            return currentOrder + 1
+        }
+
+        collectPrerequisites(targetNode, 0)
+
+        // 按顺序排序
+        pathNodes.sortBy { it.order }
+
+        return LearningPath(
+            id = "path_${courseId}_${targetNode.id}",
+            courseId = courseId,
+            title = "学习路径：${targetNode.name}",
+            description = "从基础到${targetNode.name}的学习路径",
+            nodes = pathNodes,
+            totalEstimatedMinutes = pathNodes.sumOf { it.estimatedMinutes }
         )
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,6 +43,8 @@ import androidx.compose.ui.unit.sp
 import com.keling.app.R
 import com.keling.app.data.Note
 import com.keling.app.data.NoteSource
+import com.keling.app.ui.components.RichTextEditor
+import com.keling.app.ui.components.MarkdownRenderer
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
 import java.text.SimpleDateFormat
@@ -153,8 +156,8 @@ private fun NotesHeader(
         // 返回按钮
         Surface(
             onClick = onBack,
-            shape = RoundedCornerShape(12.dp),
-            color = Color.Transparent,
+            shape = CircleShape,
+            color = BeigeSurface,
             shadowElevation = 0.dp
         ) {
             Box(
@@ -532,6 +535,7 @@ private fun NoteEditDialog(
 ) {
     var title by remember { mutableStateOf(note?.title ?: "") }
     var content by remember { mutableStateOf(note?.content ?: "") }
+    var previewMode by remember { mutableStateOf(false) }
 
     AlertDialog(
         onDismissRequest = onDismiss
@@ -543,12 +547,27 @@ private fun NoteEditDialog(
             Column(
                 modifier = Modifier.padding(24.dp)
             ) {
-            Text(
-                text = if (note == null) "新建笔记" else "编辑笔记",
-                style = MaterialTheme.typography.headlineSmall,
-                color = EarthBrown,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = if (note == null) "新建笔记" else "编辑笔记",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = EarthBrown,
+                    fontWeight = FontWeight.Bold
+                )
+
+                // 预览/编辑切换
+                TextButton(onClick = { previewMode = !previewMode }) {
+                    Text(
+                        text = if (previewMode) "编辑" else "预览",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MintGreen
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -567,19 +586,46 @@ private fun NoteEditDialog(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            OutlinedTextField(
-                value = content,
-                onValueChange = { content = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                placeholder = { Text("笔记内容...", color = EarthBrownLight) },
-                shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = MintGreen,
-                    unfocusedBorderColor = WarmGray
+            if (previewMode) {
+                // 预览模式 - 显示渲染后的Markdown
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(280.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    color = BeigeSurface.copy(alpha = 0.5f)
+                ) {
+                    if (content.isBlank()) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "暂无内容",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = EarthBrownLight
+                            )
+                        }
+                    } else {
+                        MarkdownRenderer(
+                            markdown = content,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
+                }
+            } else {
+                // 编辑模式 - 使用富文本编辑器
+                RichTextEditor(
+                    value = content,
+                    onValueChange = { content = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(280.dp),
+                    placeholder = "开始输入笔记内容...",
+                    minLines = 10,
+                    maxLines = 15
                 )
-            )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 

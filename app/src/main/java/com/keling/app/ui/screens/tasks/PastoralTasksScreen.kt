@@ -53,6 +53,7 @@ import com.keling.app.data.TaskStatus
 import com.keling.app.data.TaskType
 import com.keling.app.ui.theme.*
 import com.keling.app.viewmodel.AppViewModel
+import com.keling.app.ui.components.TaskCreationDialog
 import kotlin.math.*
 import kotlin.random.Random
 
@@ -64,6 +65,7 @@ fun PastoralTasksScreen(
     onBack: () -> Unit
 ) {
     val tasks = viewModel.tasks.value
+    val courses = viewModel.courses.value
 
     // 分类统计
     val pendingCount = tasks.count { it.status != TaskStatus.COMPLETED }
@@ -72,6 +74,10 @@ fun PastoralTasksScreen(
 
     // 筛选状态
     var selectedFilter by remember { mutableStateOf(0) }
+
+    // 任务创建对话框
+    var showCreateDialog by remember { mutableStateOf(false) }
+    var editingTask by remember { mutableStateOf<Task?>(null) }
 
     val filteredTasks = when (selectedFilter) {
         1 -> tasks.filter { it.status != TaskStatus.COMPLETED }
@@ -127,7 +133,10 @@ fun PastoralTasksScreen(
                 item {
                     EnhancedEmptyState(
                         filterType = selectedFilter,
-                        onCreateTask = { /* Navigate to AI */ }
+                        onCreateTask = {
+                            editingTask = null
+                            showCreateDialog = true
+                        }
                     )
                 }
             } else {
@@ -146,9 +155,55 @@ fun PastoralTasksScreen(
 
             // 底部留白
             item {
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(80.dp))
             }
         }
+
+        // 创建任务按钮
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 24.dp),
+            contentAlignment = Alignment.BottomEnd
+        ) {
+            Surface(
+                onClick = {
+                    editingTask = null
+                    showCreateDialog = true
+                },
+                shape = RoundedCornerShape(16.dp),
+                color = WarmSunOrange,
+                shadowElevation = 8.dp,
+                modifier = Modifier.padding(end = 20.dp)
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 14.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = "✨", fontSize = 18.sp, color = Color.White)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "创建任务",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+    }
+
+    // 任务创建对话框
+    if (showCreateDialog) {
+        TaskCreationDialog(
+            onDismiss = { showCreateDialog = false },
+            onConfirm = { task ->
+                viewModel.addTask(task)
+                showCreateDialog = false
+            },
+            courses = courses,
+            editingTask = editingTask
+        )
     }
 }
 
@@ -158,7 +213,7 @@ fun PastoralTasksScreen(
  * 增强版背景
  */
 @Composable
-private fun EnhancedTasksBackground() {
+fun EnhancedTasksBackground() {
     // 点阵图案
     Canvas(modifier = Modifier.fillMaxSize()) {
         val dotSpacing = 28.dp.toPx()
@@ -185,7 +240,7 @@ private fun EnhancedTasksBackground() {
     }
 }
 
-private data class FloatingDecorationData(
+data class FloatingDecorationData(
     val x: Float = Random.nextFloat(),
     val y: Float = Random.nextFloat(),
     val size: Int = Random.nextInt(4, 12),
@@ -195,7 +250,7 @@ private data class FloatingDecorationData(
 )
 
 @Composable
-private fun AnimatedFloatingDecoration(deco: FloatingDecorationData) {
+fun AnimatedFloatingDecoration(deco: FloatingDecorationData) {
     val infiniteTransition = rememberInfiniteTransition(label = "deco")
 
     val alpha by infiniteTransition.animateFloat(
@@ -231,7 +286,7 @@ private fun AnimatedFloatingDecoration(deco: FloatingDecorationData) {
  * 增强版头部
  */
 @Composable
-private fun EnhancedTasksHeader(onBack: () -> Unit) {
+fun EnhancedTasksHeader(onBack: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition(label = "header")
 
     val glowAlpha by infiniteTransition.animateFloat(
@@ -263,8 +318,8 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
         // 返回按钮
         Surface(
             onClick = onBack,
-            shape = RoundedCornerShape(14.dp),
-            color = Color.Transparent
+            shape = CircleShape,
+            color = BeigeSurface
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
@@ -307,7 +362,7 @@ private fun EnhancedTasksHeader(onBack: () -> Unit) {
  * 增强版任务概览
  */
 @Composable
-private fun EnhancedTaskOverview(
+fun EnhancedTaskOverview(
     pendingCount: Int,
     completedCount: Int,
     totalEnergy: Int
@@ -479,7 +534,7 @@ private fun EnhancedTaskOverview(
 }
 
 @Composable
-private fun EnhancedStatItem(
+fun EnhancedStatItem(
     icon: String,
     value: String,
     label: String,
@@ -537,7 +592,7 @@ private fun EnhancedStatItem(
  * 增强版筛选标签
  */
 @Composable
-private fun EnhancedFilterTabs(
+fun EnhancedFilterTabs(
     selectedFilter: Int,
     onFilterChange: (Int) -> Unit
 ) {
@@ -609,7 +664,7 @@ private fun EnhancedFilterTabs(
  * 增强版任务卡片
  */
 @Composable
-private fun EnhancedTaskCard(
+fun EnhancedTaskCard(
     task: Task,
     onClick: () -> Unit,
     onComplete: () -> Unit
@@ -810,7 +865,7 @@ private fun EnhancedTaskCard(
 }
 
 @Composable
-private fun EnhancedRewardChip(
+fun EnhancedRewardChip(
     icon: String,
     value: Int,
     color: Color
@@ -839,7 +894,7 @@ private fun EnhancedRewardChip(
  * 增强版空状态
  */
 @Composable
-private fun EnhancedEmptyState(
+fun EnhancedEmptyState(
     filterType: Int,
     onCreateTask: () -> Unit
 ) {
