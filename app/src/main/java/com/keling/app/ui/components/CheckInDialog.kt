@@ -223,7 +223,11 @@ private fun StreakDisplay(consecutiveDays: Int) {
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(text = "🔥", fontSize = 36.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "连续",
+                        modifier = Modifier.size(36.dp)
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = consecutiveDays.toString(),
@@ -388,7 +392,11 @@ private fun RewardAnimationPopup(
                 modifier = Modifier.padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "🎉", fontSize = 48.sp)
+                Image(
+                    painter = painterResource(id = R.drawable.ic_check),
+                    contentDescription = "成功",
+                    modifier = Modifier.size(48.dp)
+                )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "签到成功！",

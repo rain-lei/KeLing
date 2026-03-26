@@ -550,7 +550,11 @@ private fun PastoralPlanetCard(
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(text = "📋", fontSize = 12.sp)
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_icon),
+                                contentDescription = "任务",
+                                modifier = Modifier.size(12.dp)
+                            )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
                                 text = "$pendingTasks",
@@ -633,7 +637,11 @@ private fun EmptyGardenPlanetState(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "🌍", fontSize = 36.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_icon),
+                            contentDescription = "课程",
+                            modifier = Modifier.size(36.dp)
+                        )
                     }
                 }
             }
@@ -668,7 +676,11 @@ private fun EmptyGardenPlanetState(
                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = "✿", color = Color.White, fontSize = 16.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "创建",
+                        modifier = Modifier.size(16.dp)
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = "种下星球",

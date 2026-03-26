@@ -180,7 +180,11 @@ fun PastoralTasksScreen(
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 14.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = "✨", fontSize = 18.sp, color = Color.White)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "创建",
+                        modifier = Modifier.size(18.dp)
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = "创建任务",
@@ -336,7 +340,11 @@ fun EnhancedTasksHeader(onBack: () -> Unit) {
         // 标题
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "📋", fontSize = 20.sp)
+                Image(
+                    painter = painterResource(id = R.drawable.ic_icon),
+                    contentDescription = "任务",
+                    modifier = Modifier.size(20.dp)
+                )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = "培育计划板",
@@ -849,7 +857,11 @@ fun EnhancedTaskCard(
                         modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "✓", fontSize = 14.sp, color = Color.White)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_check),
+                            contentDescription = "完成",
+                            modifier = Modifier.size(14.dp)
+                        )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "完成",
@@ -1015,7 +1027,11 @@ fun EnhancedEmptyState(
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 14.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "✨", color = Color.White, fontSize = 18.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_icon),
+                            contentDescription = "创建",
+                            modifier = Modifier.size(18.dp)
+                        )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             text = "呼叫精灵助手",

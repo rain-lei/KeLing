@@ -1323,7 +1323,11 @@ private fun EnhancedTaskCard(
             // 奖励
             Column(horizontalAlignment = Alignment.End) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "⚡", fontSize = 14.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "能量",
+                        modifier = Modifier.size(14.dp)
+                    )
                     Spacer(modifier = Modifier.width(3.dp))
                     Text(
                         text = "+${task.rewards.energy}",
@@ -1335,7 +1339,11 @@ private fun EnhancedTaskCard(
 
                 if (task.rewards.crystals > 0) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "✿", fontSize = 12.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_icon),
+                            contentDescription = "水晶",
+                            modifier = Modifier.size(12.dp)
+                        )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
                             text = "+${task.rewards.crystals}",
@@ -1444,7 +1452,11 @@ private fun GlassmorphismGreetingHeader(
                                 .padding(horizontal = 10.dp, vertical = 4.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text(text = "⭐", fontSize = 12.sp)
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_icon),
+                                    contentDescription = "等级",
+                                    modifier = Modifier.size(12.dp)
+                                )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text(
                                     text = "Lv.${user.level}",
@@ -2223,7 +2235,11 @@ private fun GlassmorphismTaskCard(
 
                 Column(horizontalAlignment = Alignment.End) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "⚡", fontSize = 14.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_icon),
+                            contentDescription = "能量",
+                            modifier = Modifier.size(14.dp)
+                        )
                         Spacer(modifier = Modifier.width(3.dp))
                         Text(
                             text = "+${task.rewards.energy}",
@@ -2235,7 +2251,11 @@ private fun GlassmorphismTaskCard(
 
                     if (task.rewards.crystals > 0) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(text = "✿", fontSize = 12.sp)
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_icon),
+                                contentDescription = "水晶",
+                                modifier = Modifier.size(12.dp)
+                            )
                             Spacer(modifier = Modifier.width(3.dp))
                             Text(
                                 text = "+${task.rewards.crystals}",

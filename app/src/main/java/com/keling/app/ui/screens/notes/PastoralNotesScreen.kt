@@ -256,7 +256,11 @@ private fun AINoteCard(onAskAI: () -> Unit) {
                     modifier = Modifier.padding(14.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "🌟", fontSize = 28.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "AI",
+                        modifier = Modifier.size(28.dp)
+                    )
                 }
             }
 
@@ -474,7 +478,11 @@ private fun EmptyNotesState(onCreateNote: () -> Unit) {
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "📝", fontSize = 36.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_icon),
+                            contentDescription = "笔记",
+                            modifier = Modifier.size(36.dp)
+                        )
                     }
                 }
             }

@@ -251,7 +251,11 @@ private fun ReportOverviewCard(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "📊", fontSize = 44.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_report),
+                            contentDescription = "报告",
+                            modifier = Modifier.size(44.dp)
+                        )
                     }
                 }
             }
@@ -409,7 +413,11 @@ private fun AIInsightCard(insight: String) {
                     modifier = Modifier.padding(12.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "🌟", fontSize = 24.sp)
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_icon),
+                        contentDescription = "亮点",
+                        modifier = Modifier.size(24.dp)
+                    )
                 }
             }
 

@@ -252,7 +252,11 @@ private fun AchievementProgressCard(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "🏆", fontSize = 44.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_achievement),
+                            contentDescription = "成就",
+                            modifier = Modifier.size(44.dp)
+                        )
                     }
                 }
             }

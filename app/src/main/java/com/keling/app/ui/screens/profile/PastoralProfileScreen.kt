@@ -226,7 +226,11 @@ private fun ProfileHeader(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "⚙️", fontSize = 18.sp)
+                Image(
+                    painter = painterResource(id = R.drawable.ic_settings),
+                    contentDescription = "设置",
+                    modifier = Modifier.size(18.dp)
+                )
             }
         }
     }
