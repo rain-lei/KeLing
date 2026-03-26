@@ -121,9 +121,12 @@ fun EnhancedAIScreen(
 
     // ===== UI 布局 =====
     Box(modifier = Modifier.fillMaxSize()) {
-        // 深空背景
-        GameStarfieldBackground(
-            modifier = Modifier.fillMaxSize()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_page),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
         )
 
         Column(modifier = Modifier.fillMaxSize()) {

@@ -6,6 +6,7 @@
 package com.keling.app.ui.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
@@ -13,13 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.keling.app.R
 import com.keling.app.ui.theme.*
 import kotlin.random.Random
 
 /**
- * 星云背景
- * 缓慢移动的渐变光斑，营造深空氛围
+ * 统一页面背景
+ * 使用背景图片作为所有页面的背景
  */
 @Composable
 fun NebulaBackground(
@@ -28,92 +32,16 @@ fun NebulaBackground(
     secondaryColor: Color = StellarOrange,
     intensity: Float = 0.08f
 ) {
-    val infiniteTransition = rememberInfiniteTransition()
-
-    val offsetX by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(25000, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        )
-    )
-
-    val offsetY by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(30000, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        )
-    )
-
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(DawnWhite)
-            .drawBehind {
-                // 星云层1 - 大型渐变球
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            primaryColor.copy(alpha = intensity),
-                            Color.Transparent
-                        ),
-                        center = Offset(
-                            size.width * (0.2f + offsetX * 0.3f),
-                            size.height * (0.3f + offsetY * 0.2f)
-                        ),
-                        radius = size.minDimension * 0.8f
-                    ),
-                    radius = size.minDimension * 0.8f,
-                    center = Offset(
-                        size.width * (0.2f + offsetX * 0.3f),
-                        size.height * (0.3f + offsetY * 0.2f)
-                    )
-                )
-
-                // 星云层2
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            secondaryColor.copy(alpha = intensity * 0.6f),
-                            Color.Transparent
-                        ),
-                        center = Offset(
-                            size.width * (0.7f - offsetX * 0.2f),
-                            size.height * (0.6f + offsetY * 0.15f)
-                        ),
-                        radius = size.minDimension * 0.6f
-                    ),
-                    radius = size.minDimension * 0.6f,
-                    center = Offset(
-                        size.width * (0.7f - offsetX * 0.2f),
-                        size.height * (0.6f + offsetY * 0.15f)
-                    )
-                )
-
-                // 星云层3 - 较小的亮点
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            WarmSand.copy(alpha = intensity * 0.4f),
-                            Color.Transparent
-                        ),
-                        center = Offset(
-                            size.width * (0.5f + offsetX * 0.1f),
-                            size.height * (0.8f - offsetY * 0.1f)
-                        ),
-                        radius = size.minDimension * 0.4f
-                    ),
-                    radius = size.minDimension * 0.4f,
-                    center = Offset(
-                        size.width * (0.5f + offsetX * 0.1f),
-                        size.height * (0.8f - offsetY * 0.1f)
-                    )
-                )
-            }
-    )
+        modifier = modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_page),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
+    }
 }
 
 /**
@@ -124,35 +52,16 @@ fun NebulaBackground(
 fun DarkNebulaBackground(
     modifier: Modifier = Modifier
 ) {
-    val infiniteTransition = rememberInfiniteTransition()
-
-    val rotation by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(120000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        )
-    )
-
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(DarkBackground)
-            .drawBehind {
-                drawRect(
-                    brush = Brush.sweepGradient(
-                        colors = listOf(
-                            StellarOrange.copy(alpha = 0.05f),
-                            MossGreen.copy(alpha = 0.03f),
-                            MistRose.copy(alpha = 0.04f),
-                            StellarOrange.copy(alpha = 0.05f)
-                        ),
-                        center = Offset(size.width * 0.3f, size.height * 0.7f)
-                    )
-                )
-            }
-    )
+        modifier = modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg_page),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
+    }
 }
 
 /**

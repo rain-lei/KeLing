@@ -62,7 +62,7 @@ fun PastoralStudyReportScreen(
     ) {
         // 背景图片
         Image(
-            painter = painterResource(id = R.drawable.bg_page_theme),
+            painter = painterResource(id = R.drawable.bg_page),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds

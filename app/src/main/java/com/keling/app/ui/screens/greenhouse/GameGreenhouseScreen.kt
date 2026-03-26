@@ -122,14 +122,15 @@ fun PastoralGreenhouseScreen(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(PastoralGradients.morningGarden)
-            )
+        modifier = Modifier.fillMaxSize()
     ) {
-        // 背景装饰
-        GreenhouseBackgroundDecorations()
+        // 背景图片
+        Image(
+            painter = painterResource(id = R.drawable.bg_page),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
 
         LazyColumn(
             modifier = Modifier
