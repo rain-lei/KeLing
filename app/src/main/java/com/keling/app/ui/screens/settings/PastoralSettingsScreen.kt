@@ -383,7 +383,11 @@ private fun AboutDialog(onDismiss: () -> Unit) {
                 modifier = Modifier.padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Text(text = "🌍", fontSize = 48.sp)
+            Image(
+                painter = painterResource(id = R.drawable.ic_logo),
+                contentDescription = "课灵Logo",
+                modifier = Modifier.size(80.dp)
+            )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "课灵",
